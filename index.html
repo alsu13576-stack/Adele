@@ -176,6 +176,28 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
 .mc.sel{outline:3px solid #4caf50;outline-offset:2px;}
 .mc{cursor:pointer;}
 </style>
+<script type='module'>
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyASYnJ3rp1I7mHeERNS2mG01ZVICBsLC14",
+    authDomain: "adele-6c980.firebaseapp.com",
+    databaseURL: "https://adele-6c980-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "adele-6c980",
+    storageBucket: "adele-6c980.firebasestorage.app",
+    messagingSenderId: "106975214015",
+    appId: "1:106975214015:web:0c4ba8b33275e6d2e1090a"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  window._fbDb = db;
+  window._fbRef = ref;
+  window._fbSet = set;
+  window._fbOnValue = onValue;
+  console.log('Firebase connected!');
+</script>
 </head>
 <body>
 <h1>&#9876;&#65039; 길드 파티 관리</h1>
