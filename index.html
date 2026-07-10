@@ -341,6 +341,25 @@ var upId=null,edId=null,pkPid=null,pkSi=null,pkPool=[],activeJobs=[];
 var SORT_LABELS=['정렬'];
 var sortMode=0;
 function toggleSort(){sortMode=1-sortMode;var b=el('sortBtn');if(b)b.innerHTML=''+(sortMode?'&#10003; ':'')+'&#8597; 정렬';render();}
+function initFbSync(){
+  if(!window._fbDb||!window._fbRef||!window._fbOnValue){setTimeout(initFbSync,500);return;}
+  var dbRef=window._fbRef(window._fbDb,'guildData');
+  var isFirst=true;
+  window._fbOnValue(dbRef,function(snapshot){
+    var data=snapshot.val();
+    if(!data)return;
+    members=data.members||members;
+    parties=data.parties||parties;
+    selectedSet=data.selectedSet||selectedSet;
+    while(parties.length<PC)parties.push({id:uid(),name:(parties.length+1)+'파티'});
+    parties=parties.slice(0,PC);
+    members=members.map(function(m){return{id:m.id||uid(),name:m.name||'',job:m.job||'',portrait:m.portrait||null,partyId:m.partyId||null,slotIndex:(m.slotIndex!=null)?m.slotIndex:null,star:m.star||false};});
+    localStorage.setItem(SK,JSON.stringify({members:members,parties:parties,selectedSet:selectedSet}));
+    render();
+    if(isFirst){console.log('Firebase 실시간 동기화 시작! 멤버:',members.length);isFirst=false;}
+  });
+}
+
 function getSorted(arr){
   var a=arr.slice();
   var ri=function(j){for(var i=0;i<JM.length;i++)for(var k=0;k<JM[i].keys.length;k++)if(j&&j.indexOf(JM[i].keys[k])>=0)return i;return JM.length;};
