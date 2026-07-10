@@ -434,7 +434,15 @@ function loadD(){
   fillJobSelect('aJ','');
   fillJobSelect('eJ','');
 }
-function saveD(){localStorage.setItem(SK,JSON.stringify({members:members,parties:parties,selectedSet:selectedSet}));}
+function saveD(){
+  var data={members:members,parties:parties,selectedSet:selectedSet};
+  localStorage.setItem(SK,JSON.stringify(data));
+  if(window._fbDb&&window._fbRef&&window._fbSet){
+    window._fbSet(window._fbRef(window._fbDb,'guildData'),JSON.parse(JSON.stringify(data)))
+    .then(function(){console.log('Firebase 저장 완료');})
+    .catch(function(e){console.warn('Firebase 저장 실패:',e);});
+  }
+}
 
 function goTab(t){
   curTab=t;
