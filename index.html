@@ -200,6 +200,24 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   window._fbSet = set;
   window._fbOnValue = onValue;
   console.log('Firebase connected!');
+
+  // 실시간 동기화 - 페이지 로드 후 바로 시작
+  const dbRef = ref(db, 'guildData');
+  let isFirst = true;
+  onValue(dbRef, function(snapshot) {
+    const data = snapshot.val();
+    if (!data) return;
+    if (typeof members === 'undefined') { setTimeout(()=>{ onValue(dbRef, ()=>{}); }, 1000); return; }
+    members = data.members || members;
+    parties = data.parties || parties;
+    selectedSet = data.selectedSet || selectedSet;
+    while(parties.length < PC) parties.push({id: uid(), name: (parties.length+1)+'파티'});
+    parties = parties.slice(0, PC);
+    members = members.map(function(m){ return {id:m.id||uid(),name:m.name||'',job:m.job||'',portrait:m.portrait||null,partyId:m.partyId||null,slotIndex:(m.slotIndex!=null)?m.slotIndex:null,star:m.star||false}; });
+    localStorage.setItem(SK, JSON.stringify({members:members,parties:parties,selectedSet:selectedSet}));
+    if (typeof render === 'function') render();
+    if (isFirst) { console.log('Firebase 실시간 동기화 시작! 멤버:', members.length); isFirst = false; }
+  });
 </script>
 </head>
 <body>
