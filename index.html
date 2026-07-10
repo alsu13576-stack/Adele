@@ -209,7 +209,13 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
     const data = snapshot.val();
     if (!data) return;
     if (typeof members === 'undefined') { setTimeout(()=>{ onValue(dbRef, ()=>{}); }, 1000); return; }
-    members = (data.members !== undefined) ? data.members : members;
+    var localData=JSON.parse(localStorage.getItem(SK)||'{}');
+    var localMembers=localData.members||[];
+    var fbMembers=(data.members!==undefined)?data.members:[];
+    members=fbMembers.map(function(fm){
+      var lm=localMembers.find(function(l){return l.id===fm.id;})||{};
+      return{id:fm.id,name:fm.name,job:fm.job,portrait:lm.portrait||null,partyId:fm.partyId,slotIndex:fm.slotIndex,star:fm.star||false};
+    });
     parties = data.parties || parties;
     selectedSet = data.selectedSet || selectedSet;
     while(parties.length < PC) parties.push({id: uid(), name: (parties.length+1)+'파티'});
@@ -461,9 +467,14 @@ function saveD(){
   localStorage.setItem(SK,JSON.stringify(data));
   if(window._fbDb&&window._fbRef&&window._fbSet){
     window._fbSaving=true;
-    window._fbSet(window._fbRef(window._fbDb,'guildData'),JSON.parse(JSON.stringify(data)))
+    var fbData={
+      members:members.map(function(m){return{id:m.id,name:m.name,job:m.job,partyId:m.partyId,slotIndex:m.slotIndex,star:m.star||false};}),
+      parties:parties,
+      selectedSet:selectedSet
+    };
+    window._fbSet(window._fbRef(window._fbDb,'guildData'),fbData)
     .then(function(){console.log('Firebase 저장 완료');setTimeout(function(){window._fbSaving=false;},1500);})
-    .catch(function(e){console.warn('오류:',e);window._fbSaving=false;});
+    .catch(function(e){console.warn('Firebase 오류:',e);window._fbSaving=false;});
   }
 }
 
