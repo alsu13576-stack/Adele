@@ -1406,18 +1406,33 @@ function copyViewLink(){
       var _orig = window.render;
       window.render = function(){
         _orig && _orig();
+        // ── 편집 버튼 숨기기 ──
+        // 멤버탭 상단 편집 버튼 (정렬/추가/일괄추가/전체삭제)
+        document.querySelectorAll('.mtbar button').forEach(function(b){ b.style.display='none'; });
+        // 멤버 카드 수정/삭제 버튼
         document.querySelectorAll('.mbtn').forEach(function(b){ b.style.display='none'; });
-        document.querySelectorAll('.sdel,.spin').forEach(function(b){ b.style.display='none'; });
-        document.querySelectorAll('.slot.empty').forEach(function(s){ s.style.cursor='default'; s.style.pointerEvents='none'; });
-        document.querySelectorAll('.pcard,.slot.filled').forEach(function(c){ c.draggable=false; });
+        // 참여 인원 전체선택/전체해제
+        document.querySelectorAll('[onclick*="selectAll"],[onclick*="deselectAll"]').forEach(function(b){ b.style.display='none'; });
+        // 참여 인원 카드 클릭·체크박스 차단
+        document.querySelectorAll('.atcard').forEach(function(c){ c.style.pointerEvents='none'; c.style.cursor='default'; });
+        document.querySelectorAll('.atchk').forEach(function(c){ c.disabled=true; c.style.pointerEvents='none'; });
+        // 보드탭 편집 버튼 (랜덤배정/배정초기화)
         document.querySelectorAll('.sbtn').forEach(function(b){ b.style.display='none'; });
-        document.querySelectorAll('[onclick*="openM(\'mAdd\'")],[onclick*="delAll"],[onclick*="openM(\'mPaste\'")],[id=sortBtn]').forEach(function(b){ b.style.display='none'; });
-        // 슬롯 삭제/핀 버튼 숨기기
+        // 슬롯 삭제(✕)/핀(📌) 버튼 숨기기
         document.querySelectorAll('.sdel,.spin').forEach(function(b){ b.style.display='none'; });
-        // 빈 슬롯 포인터 이벤트 차단
+        // 빈 슬롯 클릭 차단
         document.querySelectorAll('.slot.empty').forEach(function(s){ s.style.cursor='default'; s.style.pointerEvents='none'; });
-        // 드래그 불가
+        // 드래그 차단
         document.querySelectorAll('.pcard,.slot.filled').forEach(function(c){ c.draggable=false; });
+        // ── 검색·필터는 허용 (멤버탭·참여인원·보드 대기명단) ──
+        // 위에서 차단된 것 중 검색/필터 요소만 복원
+        ['#mfQ','#mfJfBtn','#mfjfpop','#mfjfchips',
+         '#mselJfBtn','#mseljfpop','#mseljfchips',
+         '#psearch','#jfToggle','#jfpop','#jfchips'
+        ].forEach(function(sel){
+          var el=document.querySelector(sel);
+          if(el){ el.style.pointerEvents=''; el.style.opacity=''; el.disabled=false; }
+        });
       };
       window.render();
     });
