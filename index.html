@@ -33,7 +33,7 @@ h1{text-align:center;color:#5a7fa8;font-size:20px;margin-bottom:14px}
 .main-label{color:#3a6ab0;border-bottom-color:#5b8fd4}
 .sub-label{color:#7a6ab0;border-bottom-color:#a08ad4}
 .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-content:start}
-.sidebar{width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;background:white;border-radius:14px;box-shadow:0 2px 12px rgba(91,143,212,.13);padding:10px;border:1.5px solid #dde8f4;grid-row:1/3;grid-column:1}
+.sidebar{width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;background:white;border-radius:14px;box-shadow:0 2px 12px rgba(91,143,212,.13);padding:10px;border:1.5px solid #dde8f4;grid-row:1/3;grid-column:1;position:sticky;top:10px;align-self:start}
 .slbl{font-size:11px;font-weight:bold;color:#7a9ab8;background:white;border-radius:10px;padding:7px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.08)}
 .slbl span{font-size:10px;color:#aac;display:block;margin-top:2px}
 .sbg{display:grid;grid-template-columns:1fr 1fr;gap:5px}
@@ -50,7 +50,7 @@ h1{text-align:center;color:#5a7fa8;font-size:20px;margin-bottom:14px}
 .jfc.all{background:#cdd8e8;color:#4a6a88}
 .pool-wrap{border-radius:10px;transition:outline .1s;padding:2px}
 .pool-wrap.dv{outline:3px dashed #5b8fd4;background:#eaf6ff}
-.pscroll{overflow-y:auto;min-height:calc(72vh - 100px);max-height:calc(72vh - 100px);padding-right:2px}
+.pscroll{overflow-y:auto;min-height:calc(80vh - 80px);max-height:calc(80vh - 80px);padding-right:2px}
 .pscroll::-webkit-scrollbar{width:4px}
 .pscroll::-webkit-scrollbar-thumb{background:#bbd0ee;border-radius:4px}
 .plist{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
@@ -395,7 +395,7 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   <h2>&#128203; 일괄 추가</h2>
   <div style="margin-bottom:10px;font-size:12px;color:#7a9ab8;line-height:1.8">
     &#128196; <b>CSV 파일</b> 또는 <b>텍스트 직접 입력</b> 모두 가능해요!<br>
-    CSV: A열=닉네임, B열=직업, C열=sub (서브 전용) / 1행 헤더 자동 건너뛰
+    CSV: A열=닉네임, B열=직업, C열=star(고투력), D열=sub(서브) / 1행 헤더 자동 건너뛰
   </div>
   <div style="display:flex;gap:8px;margin-bottom:10px;align-items:center">
     <label style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:#e8f0fe;border:1.5px dashed #5b8fd4;border-radius:10px;cursor:pointer;font-size:12px;color:#3a6ab0;font-weight:bold">
@@ -406,8 +406,9 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   </div>
   <div style="text-align:center;color:#ccc;font-size:11px;margin:4px 0">— 또는 직접 입력 —</div>
   <textarea class="fta" id="aPaste" placeholder="닉네임	직업
-닉네임	직업	sub
-(서브 전용은 마지막에 tab 후 sub 기재)"></textarea>
+닉네임	직업	star
+닉네임	직업	star	sub
+(고투력=star, 서브=sub / 해당 없으면 생략 가능)"></textarea>
   <div class="mbtns"><button class="btn cancel" onclick="closeM('mPaste')">취소</button><button class="btn confirm" onclick="doPaste()">추가</button></div>
 </div></div>
 
@@ -669,8 +670,10 @@ function rMembers(){
       var pw=mk('div','mport');pw.style.background=m.portrait?'#111':ji.bg;
       if(m.portrait){var im=mk('img');im.src=m.portrait;pw.appendChild(im);}else{var sp=mk('span');sp.style.cssText='display:flex;align-items:center;justify-content:center;width:100%;height:100%';setJic(sp,ji,38);pw.appendChild(sp);}
       var ov=mk('div','mov');ov.textContent='📷';pw.appendChild(ov);
-      if(m.star){var st=mk('div','mstar');st.textContent='⭐';pw.appendChild(st);}
-      if(m.isSub){var sb=mk('div','mstar');sb.textContent='🔵';sb.style.cssText='background:rgba(91,143,212,0.15);color:#5b8fd4;font-size:9px';pw.appendChild(sb);}
+      var _mc=mk('div');_mc.style.cssText='position:absolute;top:2px;right:2px;display:flex;gap:1px;pointer-events:none';
+      if(m.isSub){var sb=mk('span');sb.textContent='🔵';sb.style.cssText='font-size:9px;line-height:1';_mc.appendChild(sb);}
+      if(m.star){var st=mk('span');st.textContent='⭐';st.style.cssText='font-size:11px;line-height:1;filter:drop-shadow(0 0 2px rgba(0,0,0,.5))';_mc.appendChild(st);}
+      if(m.isSub||m.star)pw.appendChild(_mc);
       // 사진 클릭: 업로드 / 카드 클릭: 선택 토글
       (function(id,pw2,c2){
         pw2.onclick=function(e){e.stopPropagation();doUpload(id);};
@@ -884,7 +887,7 @@ function _renderPartyCard(p, isEx, targetGrid) {
         })(mem, s);
         var sport = mk('div', 'sport'); sport.style.background = mem.portrait ? '#eee' : ji.bg;
         if (mem.portrait) { var pi2 = mk('img'); pi2.src = mem.portrait; sport.appendChild(pi2); } else { var sic = mk('span'); sic.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;height:100%'; setJic(sic, ji, 28); sport.appendChild(sic); }
-        if (mem.star) { var st3 = mk('div'); st3.style.cssText = 'position:absolute;top:1px;right:1px;font-size:9px;line-height:1;pointer-events:none'; st3.textContent = '⭐'; sport.appendChild(st3); }
+        if (mem.isSub||mem.star) { var _sc=mk('div');_sc.style.cssText='position:absolute;top:1px;right:1px;display:flex;gap:1px;pointer-events:none';if(mem.isSub){var _sbs=mk('span');_sbs.textContent='🔵';_sbs.style.cssText='font-size:7px;line-height:1';_sc.appendChild(_sbs);}if(mem.star){var st3=mk('span');st3.style.cssText='font-size:9px;line-height:1';st3.textContent='⭐';_sc.appendChild(st3);}sport.appendChild(_sc); }
         var sinfo = mk('div', 'sinfo');
         sinfo.appendChild(mk('div', 'sname', mem.name));
         var sjob = mk('div', 'sjob', mem.job || ''); sjob.style.color = ji.col; sinfo.appendChild(sjob);
@@ -941,8 +944,8 @@ function renderBoard() {
       })(m.id);
       var pp = mk('div', 'pp'); pp.style.background = m.portrait ? '#111' : ji.bg;
       if (m.portrait) { var i2 = mk('img'); i2.src = m.portrait; pp.appendChild(i2); } else { var s2 = mk('span'); s2.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;height:100%'; setJic(s2, ji, 24); pp.appendChild(s2); }
-      if (m.star) { var st2 = mk('div', 'mstar'); st2.textContent = '⭐'; pp.appendChild(st2); }
-      if (m.isSub) { var sb2 = mk('div', 'mstar'); sb2.textContent = '🔵'; sb2.style.cssText='background:rgba(91,143,212,0.15);color:#5b8fd4;font-size:9px'; pp.appendChild(sb2); }
+      var _pc=mk('div');_pc.style.cssText='position:absolute;top:2px;right:2px;display:flex;gap:1px;pointer-events:none';if(m.isSub){var sb2=mk('span');sb2.textContent='🔵';sb2.style.cssText='font-size:9px;line-height:1';_pc.appendChild(sb2);}if(m.star){var st2=mk('span');st2.textContent='⭐';st2.style.cssText='font-size:11px;line-height:1;filter:drop-shadow(0 0 2px rgba(0,0,0,.5))';_pc.appendChild(st2);}if(m.isSub||m.star)pp.appendChild(_pc);
+      
       var pi = mk('div', 'pi'), bar = mk('div'); bar.style.cssText = 'height:3px;background:' + ji.col + ';border-radius:2px;opacity:.6;margin-bottom:3px';
       var pj = mk('div', 'pj', m.job || '직업미선택'); pj.style.cssText = 'color:' + ji.col + ';font-size:9px';
       pi.appendChild(bar); pi.appendChild(mk('div', 'pn', m.name)); pi.appendChild(pj);
@@ -1179,10 +1182,10 @@ function loadCsv(input){
 function doPaste(){
   el('aPaste').value.split('\n').forEach(function(line){
     line=line.trim();if(!line)return;
-    var parts=line.split('\t'),name=parts[0].trim(),jobRaw=(parts[1]||'').trim(),subFlag=(parts[2]||'').trim().toLowerCase()==='sub';
+    var parts=line.split('\t'),name=parts[0].trim(),jobRaw=(parts[1]||'').trim(),starFlag=(parts[2]||'').trim().toLowerCase()==='star'||parts[2].trim()==='고투력',subFlag=(parts[3]||'').trim().toLowerCase()==='sub';
     var job=jobRaw;
     if(jobRaw){for(var i=0;i<JM.length;i++){var found=false;for(var k=0;k<JM[i].keys.length;k++)if(jobRaw.indexOf(JM[i].keys[k])>=0){job=JM[i].label;found=true;break;}if(found)break;}}
-    if(name){var nm2={id:uid(),name:name,job:job,portrait:null,partyId:null,slotIndex:null,isSub:subFlag};members.push(nm2);selectedSet[nm2.id]=true;}
+    if(name){var nm2={id:uid(),name:name,job:job,portrait:null,partyId:null,slotIndex:null,star:starFlag,isSub:subFlag};members.push(nm2);selectedSet[nm2.id]=true;}
   });
   closeM('mPaste');el('aPaste').value='';saveD();render();
 }
@@ -1437,6 +1440,26 @@ function copyViewLink(){
     });
   }
 })();
+</script>
+<script>
+  // 드래그 중 자동 스크롤 (상·하 영역 감지)
+  (function(){
+    var _scrollRAF=null;
+    document.addEventListener('dragover',function(e){
+      if(_scrollRAF)cancelAnimationFrame(_scrollRAF);
+      var ZONE=80,SPD=12,vy=0;
+      if(e.clientY<ZONE)vy=-SPD*(1-(e.clientY/ZONE));
+      else if(e.clientY>window.innerHeight-ZONE)vy=SPD*(1-((window.innerHeight-e.clientY)/ZONE));
+      if(vy!==0){
+        _scrollRAF=requestAnimationFrame(function(){
+          window.scrollBy(0,vy);
+        });
+      }
+    });
+    document.addEventListener('dragend',function(){
+      if(_scrollRAF){cancelAnimationFrame(_scrollRAF);_scrollRAF=null;}
+    });
+  })();
 </script>
 </body>
 </html>
