@@ -715,8 +715,8 @@ function rMselPanel(){
     var xb=mk('button','');xb.textContent='✕';xb.style.cssText='background:none;border:none;color:#ccc;cursor:pointer;font-size:11px;padding:0 2px;flex-shrink:0';
     xb.title='선택 해제';
     (function(mid,chip2){
-      xb.onclick=function(e){e.stopPropagation();selectedSet[mid]=false;var mm=getMem(mid);if(mm){mm.partyId=null;mm.slotIndex=null;}chip2.remove();saveD();render();};
-      chip.onclick=function(){selectedSet[mid]=false;var mm=getMem(mid);if(mm){mm.partyId=null;mm.slotIndex=null;}chip2.remove();saveD();render();};
+      xb.onclick=function(e){e.stopPropagation();if(window._readOnly)return;selectedSet[mid]=false;var mm=getMem(mid);if(mm){mm.partyId=null;mm.slotIndex=null;}chip2.remove();saveD();render();};
+      chip.onclick=function(){if(window._readOnly)return;selectedSet[mid]=false;var mm=getMem(mid);if(mm){mm.partyId=null;mm.slotIndex=null;}chip2.remove();saveD();render();};
     })(m.id,chip);
     chip.appendChild(port);chip.appendChild(info);chip.appendChild(xb);
     sl.appendChild(chip);
@@ -1187,7 +1187,7 @@ function doPaste(){
   closeM('mPaste');el('aPaste').value='';saveD();render();
 }
 function delMember(id){var m=getMem(id);if(!m||!confirm(m.name+' 삭제할까요?'))return;members=members.filter(function(x){return x.id!==id;});saveD();render();}
-function delAll(){if(!members.length){alert('멤버가 없어요!');return;}if(!confirm('⚠️ 전체 '+members.length+'명을 삭제할까요?\n\n이 작업은 되돌릴 수 없어요!'))return;if(!confirm('정말로 삭제하시겠어요?\n\n확인을 누르면 전체 멤버가 삭제됩니다.'))return;members=[];saveD();render();}
+function delAll(){if(!members.length){alert('멤버가 없어요!');return;}if(!confirm('⚠️ 전체 '+members.length+'명을 삭제할까요?\n\n이 작업은 되돌릴 수 없어요!'))return;if(!confirm('정말로 삭제하시겠어요?\n\n확인을 누르면 전체 멤버�� 삭제됩니다.'))return;members=[];saveD();render();}
 function openEdit(id){
   edId=id;var m=getMem(id);if(!m)return;
   el('eN').value=m.name;fillJobSelect('eJ',m.job);el('eStar').checked=!!m.star;el('eSub').checked=!!m.isSub;openM('mEdit');
@@ -1421,9 +1421,8 @@ function copyViewLink(){
       // 보드: 배정된 슬롯 드래그 커서 제거
       '.slot.filled{cursor:default!important}',
       '.pcard{cursor:default!important}',
-      // 참여 인원 chip ✕ 버튼 숨기기 + chip 클릭 차단 (직업 필터 칩은 제외)
+      // 참여 인원 chip ✕ 버튼만 숨기기
       '#msellist .msel-chip button{display:none!important}',
-      '#msellist .msel-chip{pointer-events:none!important;cursor:default!important}',
     ].join('\n');
     document.head.appendChild(_roStyle);
     // render 후 draggable 속성 차단 (CSS로 불가)
