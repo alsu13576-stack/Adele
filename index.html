@@ -1402,37 +1402,34 @@ function copyViewLink(){
     });
     // 멤버 수정/삭제 버튼 숨기기 (render 후)
     var origRender = window.render;
+    // CSS 주입: 재렌더 후에도 편집 차단 유지 (DOM 조작 대신 !important CSS 사용)
+    var _roStyle = document.createElement('style');
+    _roStyle.textContent = [
+      // 편집 버튼 숨기기
+      '.mtbar button{display:none!important}',
+      '.mbtn{display:none!important}',
+      '.sbtn{display:none!important}',
+      '.sdel{display:none!important}',
+      '.spin{display:none!important}',
+      'button[onclick*="selectAll"]{display:none!important}',
+      'button[onclick*="deselectAll"]{display:none!important}',
+      // 참여인원 카드 클릭·체크박스 차단
+      '.atcard{pointer-events:none!important;cursor:default!important}',
+      '.atchk{pointer-events:none!important}',
+      // 보드: 빈 슬롯 클릭 차단
+      '.slot.empty{pointer-events:none!important;cursor:default!important}',
+      // 보드: 배정된 슬롯 드래그 커서 제거
+      '.slot.filled{cursor:default!important}',
+      '.pcard{cursor:default!important}',
+    ].join('\n');
+    document.head.appendChild(_roStyle);
+    // render 후 draggable 속성 차단 (CSS로 불가)
     window.addEventListener('load', function(){
       var _orig = window.render;
       window.render = function(){
         _orig && _orig();
-        // ── 편집 버튼 숨기기 ──
-        // 멤버탭 상단 편집 버튼 (정렬/추가/일괄추가/전체삭제)
-        document.querySelectorAll('.mtbar button').forEach(function(b){ b.style.display='none'; });
-        // 멤버 카드 수정/삭제 버튼
-        document.querySelectorAll('.mbtn').forEach(function(b){ b.style.display='none'; });
-        // 참여 인원 전체선택/전체해제
-        document.querySelectorAll('[onclick*="selectAll"],[onclick*="deselectAll"]').forEach(function(b){ b.style.display='none'; });
-        // 참여 인원 카드 클릭·체크박스 차단
-        document.querySelectorAll('.atcard').forEach(function(c){ c.style.pointerEvents='none'; c.style.cursor='default'; });
-        document.querySelectorAll('.atchk').forEach(function(c){ c.disabled=true; c.style.pointerEvents='none'; });
-        // 보드탭 편집 버튼 (랜덤배정/배정초기화)
-        document.querySelectorAll('.sbtn').forEach(function(b){ b.style.display='none'; });
-        // 슬롯 삭제(✕)/핀(📌) 버튼 숨기기
-        document.querySelectorAll('.sdel,.spin').forEach(function(b){ b.style.display='none'; });
-        // 빈 슬롯 클릭 차단
-        document.querySelectorAll('.slot.empty').forEach(function(s){ s.style.cursor='default'; s.style.pointerEvents='none'; });
-        // 드래그 차단
         document.querySelectorAll('.pcard,.slot.filled').forEach(function(c){ c.draggable=false; });
-        // ── 검색·필터는 허용 (멤버탭·참여인원·보드 대기명단) ──
-        // 위에서 차단된 것 중 검색/필터 요소만 복원
-        ['#mfQ','#mfJfBtn','#mfjfpop','#mfjfchips',
-         '#mselJfBtn','#mseljfpop','#mseljfchips',
-         '#psearch','#jfToggle','#jfpop','#jfchips'
-        ].forEach(function(sel){
-          var el=document.querySelector(sel);
-          if(el){ el.style.pointerEvents=''; el.style.opacity=''; el.disabled=false; }
-        });
+        document.querySelectorAll('.atchk').forEach(function(c){ c.disabled=true; });
       };
       window.render();
     });
