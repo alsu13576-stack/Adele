@@ -440,7 +440,7 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   <h2>&#128228; Netlify 공유</h2>
   <div class="sstep"><div class="snum">1</div><div class="stxt">아래 버튼으로 뷰어 파일 다운로드</div></div>
   <div class="sstep"><div class="snum">2</div><div class="stxt"><b>Netlify</b> &rarr; Production deploys에 드래그</div></div>
-  <div class="sstep"><div class="snum">3</div><div class="stxt">고정 링크로 공유!<div class="nurl">&#128279; splendorous-choux-56eb62.netlify.app</div></div></div>
+  <div class="sstep"><div class="snum">3</div><div class="stxt">고�� 링크로 공유!<div class="nurl">&#128279; splendorous-choux-56eb62.netlify.app</div></div></div>
   <div style="text-align:center;margin:12px 0"><button class="btn green" onclick="doExport()">&#11015; 뷰어 파일 다운로드</button></div>
   <p style="font-size:10px;color:#aaa;text-align:center">파티 변경 시 다시 다운로드 후 Netlify에 올��세요</p>
   <div class="mbtns"><button class="btn cancel" onclick="closeM('mShare')">닫기</button></div>
@@ -1323,7 +1323,7 @@ function buildViewer(enc){
   L.push('}else{s.className="slot se";s.appendChild(mk("div","sne",String(si+1)));s.appendChild(mk("div","salbl","빈 자리"));}sw.appendChild(s);}});');
   L.push('var ks=Object.keys(map),se=el("vst");if(ks.length){var ttl=mk("div","sttl","직업별4 배정"),chs=mk("div","stchs");');
   L.push('ks.forEach(function(k){var sv2=map[k],ch=mk("div","stch");ch.style.background=sv2.ji.bg;ch.style.color=sv2.ji.col;ch.innerHTML=jicH(sv2.ji)+" "+k+" <b>"+sv2.asgn+"<\/b><span style=\'opacity:.7;font-size:10px\'>/"+sv2.tot+"<\/span>";chs.appendChild(ch);});se.appendChild(ttl);se.appendChild(chs);}})();');
-  L.push('(function(){var tbl=el("vtbl"),thead=mk("thead"),tr0=mk("tr");tr0.appendChild(mk("th",null,"파티"));for(var i=1;i<=PPL;i++)tr0.appendChild(mk("th",null,i+"번"));thead.appendChild(tr0);tbl.appendChild(thead);');
+  L.push('(function(){var tbl=el("vtbl"),thead=mk("thead"),tr0=mk("tr");tr0.appendChild(mk("th",null,"파티"));for(var i=1;i<=PPL;i++)tr0.appendChild(mk("th",null,i+"���"));thead.appendChild(tr0);tbl.appendChild(thead);');
   L.push('var tb=mk("tbody");tbl.appendChild(tb);ps.forEach(function(p,idx){var sl=gs(p.id),ex=p.type==="sub",ex2=false,tr=mk("tr");if(ex)tr.className="ex";');
   L.push('var td0=mk("td");td0.innerHTML="<b style=color:"+(ex?"#9ab0c8":"inherit")+">"+p.name+"<\/b>";tr.appendChild(td0);');
   L.push('for(var si=0;si<PPL;si++){var m=sl[si],td=mk("td");if(m){var ji=gj(m.job),cc=mk("div","tc"),port=mk("div","tcp");port.style.background=ji.bg;');
@@ -1421,6 +1421,9 @@ function copyViewLink(){
       // 보드: 배정된 슬롯 드래그 커서 제거
       '.slot.filled{cursor:default!important}',
       '.pcard{cursor:default!important}',
+      // 참여 인원 chip ✕ 버튼 숨기기 + chip 클릭 차단 (직업 필터 칩은 제외)
+      '#msellist .msel-chip button{display:none!important}',
+      '#msellist .msel-chip{pointer-events:none!important;cursor:default!important}',
     ].join('\n');
     document.head.appendChild(_roStyle);
     // render 후 draggable 속성 차단 (CSS로 불가)
