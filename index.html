@@ -1182,7 +1182,7 @@ function loadCsv(input){
 function doPaste(){
   el('aPaste').value.split('\n').forEach(function(line){
     line=line.trim();if(!line)return;
-    var parts=line.split('\t'),name=parts[0].trim(),jobRaw=(parts[1]||'').trim(),starFlag=(parts[2]||'').trim().toLowerCase()==='star'||parts[2].trim()==='고투력',subFlag=(parts[3]||'').trim().toLowerCase()==='sub';
+    var parts=line.split('\t'),name=parts[0].trim(),jobRaw=(parts[1]||'').trim(),p2=(parts[2]||'').trim(),p3=(parts[3]||'').trim(),starFlag=p2.toLowerCase()==='star'||p2==='고투력',subFlag=p3.toLowerCase()==='sub'||p2.toLowerCase()==='sub';
     var job=jobRaw;
     if(jobRaw){for(var i=0;i<JM.length;i++){var found=false;for(var k=0;k<JM[i].keys.length;k++)if(jobRaw.indexOf(JM[i].keys[k])>=0){job=JM[i].label;found=true;break;}if(found)break;}}
     if(name){var nm2={id:uid(),name:name,job:job,portrait:null,partyId:null,slotIndex:null,star:starFlag,isSub:subFlag};members.push(nm2);selectedSet[nm2.id]=true;}
