@@ -24,6 +24,11 @@ h1{text-align:center;color:#5a7fa8;font-size:20px;margin-bottom:14px}
 .btn.green{background:linear-gradient(135deg,#4caf50,#2e7d32);color:white;border-color:#2e7d32;font-size:13px;padding:10px 24px;border-radius:12px}
 .btn.job-change{background:#e8f7ed;color:#2e7d32;border-color:#a8d8b0}
 .bsw{width:100%;overflow-x:auto;overflow-y:visible}
+/* 보드 탭 배치 대기자 sticky 보강 */
+#v-board .bsw{overflow:visible!important}
+#v-board .layout3{overflow:visible!important}
+#v-board .sidebar{position:sticky!important;top:12px!important;align-self:flex-start!important;z-index:50!important}
+
 .scr-hint{text-align:center;font-size:10px;color:#bbb;margin-bottom:6px;display:none}
 @media(max-width:1020px){.scr-hint{display:block}}
 .layout{display:grid;grid-template-columns:240px repeat(4,240px);gap:10px;align-items:start;width:fit-content;margin:0 auto}
@@ -175,11 +180,11 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
 .ml-wrap{display:flex;gap:0;align-items:flex-start;max-width:1100px;margin:0 auto;}
 .ml-left{flex:1;min-width:0;padding:0 10px 0 0;}
 .ml-filter{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:10px 12px 8px;margin:0 auto 10px;width:360px;}
-.submark-actions{display:flex;gap:6px;margin-bottom:8px}.submark-actions .btn{flex:1;padding:6px 4px;font-size:11px;border-radius:9px}.submark-actions .btn.sub-on{background:#e8f0fe;color:#3a6ab0;border-color:#bbd0ee}.submark-actions .btn.sub-off{background:#f4f0fb;color:#7a6ab0;border-color:#d8c8ee}.submark-actions .btn.main-on{background:#e8f7ed;color:#2e7d32;border-color:#a8d8b0}.submark-actions .btn.main-off{background:#fff3e0;color:#b86a00;border-color:#ffd39a}
+.submark-actions{display:flex;gap:5px;margin-top:6px;margin-bottom:0;flex-wrap:wrap}.submark-actions .btn{flex:1;font-size:11px;border-radius:7px;padding:3px 0;min-width:0;line-height:1.35;border-width:1px}.submark-actions .btn.all-on,.submark-actions .btn.main-on,.submark-actions .btn.sub-on{background:#e8f4fd;color:#5b8fd4;border-color:#bbd0ee}.submark-actions .btn.all-off,.submark-actions .btn.main-off,.submark-actions .btn.sub-off{background:#fde8e8;color:#d44;border-color:#f0c0c0}
 .mf-srow{display:flex;align-items:center;gap:6px;}
 .ml-right{width:220px;flex-shrink:0;background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:12px;position:sticky;top:10px;min-height:calc(70vh - 120px);max-height:calc(100vh - 120px);overflow-y:auto;}
 .msel-hd{margin-bottom:10px;}
-.msel-title{font-size:13px;font-weight:bold;color:#2c3e50;}
+.msel-title{font-size:13px;font-weight:bold;color:#2c3e50;text-align:center;}
 .msel-list{display:flex;flex-direction:column;gap:5px;}
 .msel-chip{display:flex;align-items:center;gap:7px;background:#f0fff4;border:1.5px solid #81c784;border-radius:9px;padding:5px 8px;cursor:pointer;transition:background .15s;}
 .msel-chip:hover{background:#e0f7ea;}
@@ -219,6 +224,7 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   .pgrid{grid-column:auto!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%}
   .ptc{min-width:0;width:100%}
   .bsw{overflow-x:hidden;width:100%}
+  #v-board .bsw{overflow:visible!important}
   .scr-hint{display:none!important}
   /* 테이블 탭 */
   .tw{max-width:100%}
@@ -321,14 +327,6 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
     <!-- 오른쪽: 선택된 멤버 패널 -->
     <div class="ml-right" id="mselPanel">
       <div class="msel-hd">
-        <div class="submark-actions mainselect-actions">
-          <button class="btn main-off" onclick="clearMainSelect()">메인 해제</button>
-          <button class="btn main-on" onclick="openMainSelectModal()">메인 입력</button>
-        </div>
-        <div class="submark-actions">
-          <button class="btn sub-off" onclick="clearSubMarks()">서브 해제</button>
-          <button class="btn sub-on" onclick="openSubMarkModal()">서브 입력</button>
-        </div>
         <div class="msel-title">&#9876;&#65039; 참여 인원 <span id="mselcnt" style="font-size:11px;font-weight:normal;color:#7a9ab8"></span></div>
         <div class="mf-srow" style="margin-top:6px">
           <button id="mselJfBtn" onclick="toggleMselJf()" style="background:none;border:1.5px solid #bbd0ee;border-radius:8px;padding:2px 9px;cursor:pointer;font-size:12px;color:#7a9ab8;flex-shrink:0;width:100%">&#9660; 직업 필터</button>
@@ -336,9 +334,17 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
         <div id="mseljfpop" style="display:none;background:#f8faff;border-radius:8px;padding:6px 4px;margin-top:4px">
           <div class="jf-chips" id="mseljfchips"></div>
         </div>
-        <div style="display:flex;gap:5px;margin-top:6px;flex-wrap:wrap">
-          <button onclick="selectAll()" style="flex:1;font-size:11px;background:#e8f4fd;border:1px solid #bbd0ee;border-radius:7px;padding:3px 0;cursor:pointer;color:#5b8fd4">전체선택</button>
-          <button onclick="deselectAll()" style="flex:1;font-size:11px;background:#fde8e8;border:1px solid #f0c0c0;border-radius:7px;padding:3px 0;cursor:pointer;color:#d44">전체해제</button>
+        <div class="submark-actions allselect-actions">
+          <button class="btn all-on" onclick="selectAll()">전체 선택</button>
+          <button class="btn all-off" onclick="deselectAll()">전체 해제</button>
+        </div>
+        <div class="submark-actions mainselect-actions">
+          <button class="btn main-on" onclick="openMainSelectModal()">메인 선택</button>
+          <button class="btn main-off" onclick="clearMainSelect()">메인 해제</button>
+        </div>
+        <div class="submark-actions">
+          <button class="btn sub-on" onclick="openSubMarkModal()">서브 선택</button>
+          <button class="btn sub-off" onclick="clearSubMarks()">서브 해제</button>
         </div>
       </div>
       <div class="msel-list" id="msellist"></div>
@@ -658,7 +664,10 @@ function render(){
   try{
     syncSubMarkedSelection();
     var sub=members.filter(function(m){return !m.partyId&&selectedSet[m.id]!==false;});
-    el('info').textContent='전체 '+members.length+'명 · 배정됨 '+members.filter(function(m){return m.partyId;}).length+'명 · 대기 '+members.filter(function(m){return !m.partyId;}).length+'명';
+    var mainCnt=members.filter(function(m){return selectedSet[m.id]!==false&&!m.isSub;}).length;
+    var subCnt=members.filter(function(m){return selectedSet[m.id]!==false&&m.isSub;}).length;
+    var outCnt=members.filter(function(m){return selectedSet[m.id]===false;}).length;
+    el('info').textContent='전체 '+members.length+'명 · 메인 '+mainCnt+'명 · 서브 '+subCnt+'명 · 미참여 '+outCnt+'명';
     // 데이터 변경 시 현재 탭만 다시 그리면 숨겨진 탭의 화면이 이전 상태로 남아
     // 탭 이동/새로고침 전까지 변경사항이 안 보일 수 있어, 모든 탭을 즉시 동기 렌더링합니다.
     rMembers();
@@ -1431,7 +1440,7 @@ function buildViewer(enc){
   L.push('*{box-sizing:border-box;margin:0;padding:0}body{font-family:sans-serif;background:#eef2f7;padding:16px}');
   L.push('h1{text-align:center;color:#5a7fa8;font-size:20px;margin-bottom:4px}.sub{text-align:center;color:#aac;font-size:11px;margin-bottom:10px}');
   L.push('.tabs{display:flex;justify-content:center;gap:8px;margin-bottom:12px}.tab{padding:7px 18px;border:2px solid #bbd0ee;border-radius:20px;background:#ddeaf8;color:#3a6ab0;font-size:12px;font-weight:bold;cursor:pointer}.tab.active{background:linear-gradient(135deg,#5b8fd4,#3a6ab0);color:white;border-color:#3a6ab0}');
-  L.push('.info{text-align:center;color:#999;font-size:12px;margin-bottom:10px}.bsw{width:100%;overflow-x:auto;overflow-y:visible}.layout{display:grid;grid-template-columns:240px repeat(4,240px);gap:10px;align-items:start;width:fit-content;margin:0 auto}.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-content:start}.sidebar{width:240px;display:flex;flex-direction:column;gap:6px;background:white;border-radius:14px;box-shadow:0 2px 12px rgba(91,143,212,.13);padding:10px;border:1.5px solid #dde8f4;grid-row:1/3;grid-column:1}');
+    L.push('.info{text-align:center;color:#999;font-size:12px;margin-bottom:10px}.bsw{width:100%;overflow-x:auto;overflow-y:visible}.layout{display:grid;grid-template-columns:240px repeat(4,240px);gap:10px;align-items:start;width:fit-content;margin:0 auto}.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-content:start}.sidebar{width:240px;display:flex;flex-direction:column;gap:6px;background:white;border-radius:14px;box-shadow:0 2px 12px rgba(91,143,212,.13);padding:10px;border:1.5px solid #dde8f4;grid-row:1/3;grid-column:1}');
   L.push('.slbl{font-size:11px;font-weight:bold;color:#7a9ab8;background:white;border-radius:10px;padding:7px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:6px}.slbl span{font-size:10px;color:#aac;display:block;margin-top:2px}');
   L.push('.pscroll{overflow-y:auto;max-height:72vh}.plist{display:flex;flex-direction:column;gap:7px}.pc{background:white;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.08);overflow:hidden}');
   L.push('.pp{width:100%;height:90px;display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden}.pp img{width:100%;height:100%;object-fit:cover;display:block}.pi{padding:4px 7px 7px}');
