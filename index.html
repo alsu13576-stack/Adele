@@ -40,8 +40,12 @@ h1{text-align:center;color:#5a7fa8;font-size:20px;margin-bottom:14px}
 .sub-label{color:#7a6ab0;border-bottom-color:#a08ad4}
 .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-content:start}
 .sidebar{width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;background:white;border-radius:14px;box-shadow:0 2px 12px rgba(91,143,212,.13);padding:10px;border:1.5px solid #dde8f4;grid-row:1/3;grid-column:1;position:sticky;top:12px;align-self:start;z-index:20;max-height:calc(100vh - 24px)}
-.slbl{font-size:11px;font-weight:bold;color:#7a9ab8;background:white;border-radius:10px;padding:7px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-.slbl span{font-size:10px;color:#aac;display:block;margin-top:2px}
+ .slbl{font-size:12px;font-weight:800;color:#2c3e50;background:linear-gradient(180deg,#ffffff,#f8fbff);border:1.5px solid #eef4fb;border-radius:13px;padding:10px 8px;text-align:center;box-shadow:0 2px 8px rgba(91,143,212,.08)}
+.slbl span{font-size:11px;color:#7a9ab8;display:block;margin-top:3px;font-weight:700}
+.box-head{font-size:12px;font-weight:800;color:#2c3e50;background:linear-gradient(180deg,#ffffff,#f8fbff);border:1.5px solid #eef4fb;border-radius:13px;padding:10px 8px;text-align:center;box-shadow:0 2px 8px rgba(91,143,212,.08);margin-bottom:8px}
+.box-head span{font-size:11px;color:#7a9ab8;font-weight:700}
+.unified-search{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid #bbd0ee;border-radius:10px;padding:4px 8px;box-shadow:0 1px 5px rgba(91,143,212,.08);width:100%;overflow:hidden}
+.unified-search .psearch{font-size:11px;min-width:0}.filter-toggle{background:#f8fbff!important;border:1.5px solid #bbd0ee!important;border-radius:8px!important;padding:2px 8px!important;cursor:pointer;font-size:12px!important;color:#7a9ab8!important;flex-shrink:0;min-width:34px}
 .sbg{display:grid;grid-template-columns:1fr 1fr;gap:5px}
 .sbtn{padding:7px 4px;border:2px solid #bbd0ee;border-radius:9px;cursor:pointer;font-size:11px;font-weight:bold;background:#ddeaf8;color:#3a6ab0;text-align:center}
 .sbtn.wide{grid-column:1/-1}
@@ -219,7 +223,7 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   .layout{grid-template-columns:1fr!important;width:100%!important}
   .layout3{grid-template-columns:1fr!important;gap:12px;width:100%!important;max-width:100%!important}
   .board-panel{width:100%;min-width:0;overflow:hidden}
-  #v-board .sidebar{display:none!important}
+  .sidebar{grid-row:auto;grid-column:auto;width:100%!important;position:sticky;top:8px;z-index:20;max-height:calc(100vh - 16px)}
   .pscroll{min-height:220px;max-height:45vh}
   .pgrid{grid-column:auto!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%}
   .ptc{min-width:0;width:100%}
@@ -327,9 +331,11 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
     <!-- 오른쪽: 선택된 멤버 패널 -->
     <div class="ml-right" id="mselPanel">
       <div class="msel-hd">
-        <div class="msel-title">&#9876;&#65039; 참여 인원 <span id="mselcnt" style="font-size:11px;font-weight:normal;color:#7a9ab8"></span></div>
-        <div class="mf-srow" style="margin-top:6px">
-          <button id="mselJfBtn" onclick="toggleMselJf()" style="background:none;border:1.5px solid #bbd0ee;border-radius:8px;padding:2px 9px;cursor:pointer;font-size:12px;color:#7a9ab8;flex-shrink:0;width:100%">&#9660; 직업 필터</button>
+        <div class="box-head">&#9876;&#65039; 참여 인원 <span id="mselcnt"></span></div>
+        <div class="unified-search">
+          <span style="font-size:12px;color:#aac">&#128269;</span>
+          <input class="psearch" id="mselQ" placeholder="닉네임 검색..." oninput="mselq()">
+          <button id="mselJfBtn" class="filter-toggle" onclick="toggleMselJf()" title="직업 필터">&#9660;</button>
         </div>
         <div id="mseljfpop" style="display:none;background:#f8faff;border-radius:8px;padding:6px 4px;margin-top:4px">
           <div class="jf-chips" id="mseljfchips"></div>
@@ -361,10 +367,10 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   <div class="bsw"><div class="layout3">
     <div class="sidebar">
       <div class="slbl">&#128101; 배치 대기자<span id="pcnt"></span></div>
-      <div class="srow">
+      <div class="unified-search">
         <span style="font-size:12px;color:#aac">&#128269;</span>
         <input class="psearch" id="psearch" placeholder="닉네임 검색..." oninput="renderBoard()">
-        <button id="jfToggle" onclick="toggleJf()" style="background:none;border:1.5px solid #bbd0ee;border-radius:8px;padding:2px 8px;cursor:pointer;font-size:12px;color:#7a9ab8;flex-shrink:0" title="직업 필터">&#9660;</button>
+        <button id="jfToggle" class="filter-toggle" onclick="toggleJf()" title="직업 필터">&#9660;</button>
       </div>
       <div id="jfpop" style="display:none;background:white;border:1.5px solid #dde8f4;border-radius:10px;padding:6px;margin-top:4px;box-shadow:0 4px 12px rgba(0,0,0,.1)">
         <div class="jf-chips" id="jfchips"></div>
@@ -496,7 +502,7 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
 <input type="file" id="filein" accept="image/*" style="display:none">
 <script>
 var SK='gm11',MPC=8,SPC=8,PPL=5;
-var members=[],parties=[],selectedSet={},mfActiveJobs=[],mseljActiveJobs=[],mfQ='',curTab='board';
+var members=[],parties=[],selectedSet={},mfActiveJobs=[],mseljActiveJobs=[],mfQ='',mselQ='',curTab='board';
 var upId=null,edId=null,pkPid=null,pkSi=null,pkPool=[],activeJobs=[],dragSrc=null;
 
 var SORT_LABELS=['정렬'];
@@ -717,9 +723,10 @@ function toggleMfJf(){
 function toggleMselJf(){
   var p=el('mseljfpop');if(!p)return;
   var open=p.style.display!=='none';p.style.display=open?'none':'block';
-  var b=el('mselJfBtn');if(b)b.textContent=(open?'▼':'▲')+' 직업 필터';
+  var b=el('mselJfBtn');if(b)b.textContent=open?'▼':'▲';
 }
 function mfq(){mfQ=(el('mfQ')||{value:''}).value.trim().toLowerCase();rMembers();}
+function mselq(){mselQ=(el('mselQ')||{value:''}).value.trim().toLowerCase();rMselPanel();}
 function selectAll(){members.forEach(function(m){selectedSet[m.id]=true;});saveD();rMembers();}
 function deselectAll(){members.forEach(function(m){if(m.pinned){selectedSet[m.id]=true;return;}selectedSet[m.id]=false;m.partyId=null;m.slotIndex=null;});saveD();refreshNow();}
 function rMembers(){
@@ -731,7 +738,7 @@ function rMembers(){
   if(q)shown=shown.filter(function(m){return m.name.toLowerCase().indexOf(q)>=0||(m.job&&m.job.toLowerCase().indexOf(q)>=0);});
   var sel=all.filter(function(m){return selectedSet[m.id]!==false;});
   var cntEl=el('mfcnt');if(cntEl)cntEl.textContent=shown.length+'명 표시 / 전체 '+all.length+'명';
-  var selCnt=el('mselcnt');if(selCnt)selCnt.textContent='('+(mseljActiveJobs.length?sel.filter(function(m){return mseljActiveJobs.indexOf(m.job)>=0;}).length:sel.length)+'명)';
+  var selCnt=el('mselcnt');if(selCnt)selCnt.textContent='';
   var g=el('mgrid');g.innerHTML='';
   if(!members.length){var d=mk('div');d.style.cssText='grid-column:1/-1;text-align:center;color:#bbb;padding:30px';d.textContent='멤버가 없어요.';g.appendChild(d);}
   else{
@@ -771,7 +778,8 @@ function rMselPanel(){
   var all=getSorted(members.slice());
   var sel=all.filter(function(m){return selectedSet[m.id]!==false;});
   if(mseljActiveJobs.length)sel=sel.filter(function(m){return mseljActiveJobs.indexOf(m.job)>=0;});
-  var selCnt=el('mselcnt');if(selCnt)selCnt.textContent='('+all.filter(function(m){return selectedSet[m.id]!==false;}).length+'명)';
+  if(mselQ)sel=sel.filter(function(m){return (m.name&&m.name.toLowerCase().indexOf(mselQ)>=0)||(m.job&&m.job.toLowerCase().indexOf(mselQ)>=0);});
+  var selCnt=el('mselcnt');if(selCnt)selCnt.textContent='';
   var sl=el('msellist');if(!sl)return;sl.innerHTML='';
   if(!sel.length){
     var e=mk('div','msel-empty');e.textContent=mseljActiveJobs.length?'필터 결과 없음':'선택된 멤버가 없어요. (카드를 클릭하세요)';sl.appendChild(e);return;
@@ -1000,7 +1008,7 @@ function renderBoard() {
   var _poolRaw=members.filter(function(m){return !m.partyId&&selectedSet[m.id]!==false;});var _ri=function(j){for(var _i=0;_i<JM.length;_i++)for(var _k=0;_k<JM[_i].keys.length;_k++)if(j&&j.indexOf(JM[_i].keys[_k])>=0)return _i;return JM.length;};var pool=_poolRaw.slice().sort(function(a,b){var d=_ri(a.job)-_ri(b.job);return d!==0?d:(a.name<b.name?-1:a.name>b.name?1:0);});var filt=pool;
   if (activeJobs.length) filt = filt.filter(function(m) { return activeJobs.indexOf(m.job) >= 0; });
   if (q) filt = filt.filter(function(m) { return m.name.toLowerCase().indexOf(q) >= 0 || (m.job && m.job.toLowerCase().indexOf(q) >= 0); });
-  el('pcnt').textContent = pool.length + '명';
+  el('pcnt').textContent = '';
   buildJobFilter();
   var pl = el('plist'); pl.innerHTML = '';
   if (!filt.length) {
