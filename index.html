@@ -632,6 +632,7 @@ function loadD(){
 }
 function saveD(){
   if(window._readOnly){console.log("[readonly] 저장 차단");return;}
+  syncSubMarkedSelection();
   var data={members:members,parties:parties,selectedSet:selectedSet};
   localStorage.setItem(SK,JSON.stringify(data));
   if(window._fbDb&&window._fbRef&&window._fbSet){
@@ -655,6 +656,7 @@ function goTab(t){
 }
 function render(){
   try{
+    syncSubMarkedSelection();
     var sub=members.filter(function(m){return !m.partyId&&selectedSet[m.id]!==false;});
     el('info').textContent='전체 '+members.length+'명 · 배정됨 '+members.filter(function(m){return m.partyId;}).length+'명 · 대기 '+members.filter(function(m){return !m.partyId;}).length+'명';
     // 데이터 변경 시 현재 탭만 다시 그리면 숨겨진 탭의 화면이 이전 상태로 남아
@@ -1215,6 +1217,12 @@ function _parseNameLines(text){
     return (parts[0]||'').trim();
   }).filter(function(x){return !!x;});
 }
+
+function syncSubMarkedSelection(){
+  members.forEach(function(m){
+    if(m.isSub){selectedSet[m.id]=true;}
+  });
+}
 function openMainSelectModal(){
   if(window._readOnly)return;
   var names=members.filter(function(m){return selectedSet[m.id]!==false;}).map(function(m){return m.name;}).join('\n');
@@ -1253,7 +1261,7 @@ function applySubMarks(){
   var set={};names.forEach(function(n){set[n.toLowerCase()]=true;});
   var hit=0;
   members.forEach(function(m){if(set[(m.name||'').trim().toLowerCase()]){m.isSub=true;selectedSet[m.id]=true;hit++;}});
-  closeM('mSubMark');el('subMarkPaste').value='';saveD();refreshNow();
+  syncSubMarkedSelection();closeM('mSubMark');el('subMarkPaste').value='';saveD();refreshNow();
   setTimeout(function(){alert(hit+'명에 서브 마크를 입력했어요.');},50);
 }
 function clearSubMarks(){
