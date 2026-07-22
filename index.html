@@ -1072,7 +1072,7 @@ function rTable(){
     }
     tb.appendChild(tr);
   });
-  var sub=members.filter(function(m){return !m.partyId&&selectedSet[m.id]!==false;});
+  var sub=members.filter(function(m){return !m.partyId;});
   if(sub.length){var srows=Math.ceil(sub.length/PPL);for(var ri2=0;ri2<srows;ri2++){var tr2=mk('tr');tr2.style.background='#f4f0fc';var td01=mk('td');td01.style.whiteSpace='nowrap';if(ri2===0)td01.innerHTML='<b style="color:#7a6ab0">대기중</b>';tr2.appendChild(td01);for(var ci2=0;ci2<PPL;ci2++){var sm=getSorted(sub)[ri2*PPL+ci2],td=mk('td');if(sm){var ji2=gji(sm.job),cc2=mk('div','tc'),pt2=mk('div','tcp');pt2.style.background=ji2.bg;if(sm.portrait){var im4=mk('img');im4.src=sm.portrait;pt2.appendChild(im4);}else{setJic(pt2,ji2,22);}var a12=mk('div');a12.style.cssText='font-size:11px;font-weight:bold';a12.textContent=sm.name;cc2.appendChild(pt2);cc2.appendChild(a12);td.appendChild(cc2);}else{td.innerHTML='<span style="color:#eee">-</span>';}tr2.appendChild(td);}tb.appendChild(tr2);}}
   var se=el('tstats');se.innerHTML='';
   var map=calcStats(),ks=sortKeys(Object.keys(map));if(!ks.length)return;
@@ -1252,7 +1252,7 @@ function applySubMarks(){
   var names=_parseNameLines(el('subMarkPaste').value);
   var set={};names.forEach(function(n){set[n.toLowerCase()]=true;});
   var hit=0;
-  members.forEach(function(m){if(set[(m.name||'').trim().toLowerCase()]){m.isSub=true;hit++;}});
+  members.forEach(function(m){if(set[(m.name||'').trim().toLowerCase()]){m.isSub=true;selectedSet[m.id]=true;hit++;}});
   closeM('mSubMark');el('subMarkPaste').value='';saveD();refreshNow();
   setTimeout(function(){alert(hit+'명에 서브 마크를 입력했어요.');},50);
 }
