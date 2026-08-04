@@ -22,30 +22,20 @@ h1{text-align:center;color:#5a7fa8;font-size:20px;margin-bottom:14px}
 .btn.confirm{background:linear-gradient(135deg,#5b8fd4,#3a6ab0);color:white;border-color:#3a6ab0}
 .btn.danger{background:#fde8e8;color:#c0392b;border-color:#f5c0c0}
 .btn.green{background:linear-gradient(135deg,#4caf50,#2e7d32);color:white;border-color:#2e7d32;font-size:13px;padding:10px 24px;border-radius:12px}
-.btn.job-change{background:#e8f7ed;color:#2e7d32;border-color:#a8d8b0}
-.bsw{width:100%;overflow-x:auto;overflow-y:visible}
-/* 보드 탭 배치 대기자 sticky 보강 */
-#v-board .bsw{overflow:visible!important}
-#v-board .layout3{overflow:visible!important}
-#v-board .sidebar{position:sticky!important;top:12px!important;align-self:flex-start!important;z-index:50!important}
-
+.bsw{width:100%;overflow-x:auto}
 .scr-hint{text-align:center;font-size:10px;color:#bbb;margin-bottom:6px;display:none}
 @media(max-width:1020px){.scr-hint{display:block}}
 .layout{display:grid;grid-template-columns:240px repeat(4,240px);gap:10px;align-items:start;width:fit-content;margin:0 auto}
-.layout3{display:grid;grid-template-columns:260px 1fr 1fr;gap:16px;align-items:start;width:100%;max-width:1400px;margin:0 auto;overflow:visible}
+.layout3{display:grid;grid-template-columns:260px 1fr 1fr;gap:16px;align-items:start;width:100%;max-width:1400px;margin:0 auto}
 .board-panel{background:#f8faff;border-radius:14px;border:1.5px solid #dde8f4;padding:10px}
 .sub-panel{background:#f8f4ff;border:1.5px solid #e0d4f4}
 .panel-label{font-size:13px;font-weight:bold;text-align:center;padding:6px 0 10px;border-bottom:2px solid #dde8f4;margin-bottom:10px}
 .main-label{color:#3a6ab0;border-bottom-color:#5b8fd4}
 .sub-label{color:#7a6ab0;border-bottom-color:#a08ad4}
 .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-content:start}
-.sidebar{width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;background:white;border-radius:14px;box-shadow:0 2px 12px rgba(91,143,212,.13);padding:10px;border:1.5px solid #dde8f4;grid-row:1/3;grid-column:1;position:sticky;top:12px;align-self:start;z-index:20;max-height:calc(100vh - 24px)}
- .slbl{font-size:12px;font-weight:800;color:#2c3e50;background:linear-gradient(180deg,#ffffff,#f8fbff);border:1.5px solid #eef4fb;border-radius:13px;padding:10px 8px;text-align:center;box-shadow:0 2px 8px rgba(91,143,212,.08)}
-.slbl span{font-size:11px;color:#7a9ab8;display:block;margin-top:3px;font-weight:700}
-.box-head{font-size:12px;font-weight:800;color:#2c3e50;background:linear-gradient(180deg,#ffffff,#f8fbff);border:1.5px solid #eef4fb;border-radius:13px;padding:10px 8px;text-align:center;box-shadow:0 2px 8px rgba(91,143,212,.08);margin-bottom:8px}
-.box-head span{font-size:11px;color:#7a9ab8;font-weight:700}
-.unified-search{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid #bbd0ee;border-radius:10px;padding:4px 8px;box-shadow:0 1px 5px rgba(91,143,212,.08);width:100%;overflow:hidden}
-.unified-search .psearch{font-size:11px;min-width:0}.filter-toggle{background:#f8fbff!important;border:1.5px solid #bbd0ee!important;border-radius:8px!important;padding:2px 8px!important;cursor:pointer;font-size:12px!important;color:#7a9ab8!important;flex-shrink:0;min-width:34px}
+.sidebar{width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;background:white;border-radius:14px;box-shadow:0 2px 12px rgba(91,143,212,.13);padding:10px;border:1.5px solid #dde8f4;grid-row:1/3;grid-column:1;position:sticky;top:10px;align-self:start}
+.slbl{font-size:11px;font-weight:bold;color:#7a9ab8;background:white;border-radius:10px;padding:7px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.slbl span{font-size:10px;color:#aac;display:block;margin-top:2px}
 .sbg{display:grid;grid-template-columns:1fr 1fr;gap:5px}
 .sbtn{padding:7px 4px;border:2px solid #bbd0ee;border-radius:9px;cursor:pointer;font-size:11px;font-weight:bold;background:#ddeaf8;color:#3a6ab0;text-align:center}
 .sbtn.wide{grid-column:1/-1}
@@ -60,7 +50,7 @@ h1{text-align:center;color:#5a7fa8;font-size:20px;margin-bottom:14px}
 .jfc.all{background:#cdd8e8;color:#4a6a88}
 .pool-wrap{border-radius:10px;transition:outline .1s;padding:2px}
 .pool-wrap.dv{outline:3px dashed #5b8fd4;background:#eaf6ff}
-.pscroll{overflow-y:auto;min-height:calc(100vh - 190px);max-height:calc(100vh - 190px);padding-right:2px;overscroll-behavior:contain}
+.pscroll{overflow-y:auto;min-height:calc(80vh - 80px);max-height:calc(80vh - 80px);padding-right:2px}
 .pscroll::-webkit-scrollbar{width:4px}
 .pscroll::-webkit-scrollbar-thumb{background:#bbd0ee;border-radius:4px}
 .plist{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
@@ -184,11 +174,10 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
 .ml-wrap{display:flex;gap:0;align-items:flex-start;max-width:1100px;margin:0 auto;}
 .ml-left{flex:1;min-width:0;padding:0 10px 0 0;}
 .ml-filter{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:10px 12px 8px;margin:0 auto 10px;width:360px;}
-.submark-actions{display:flex;gap:5px;margin-top:6px;margin-bottom:0;flex-wrap:wrap}.submark-actions .btn{flex:1;font-size:11px;border-radius:7px;padding:3px 0;min-width:0;line-height:1.35;border-width:1px}.submark-actions .btn.all-on,.submark-actions .btn.main-on,.submark-actions .btn.sub-on{background:#e8f4fd;color:#5b8fd4;border-color:#bbd0ee}.submark-actions .btn.all-off,.submark-actions .btn.main-off,.submark-actions .btn.sub-off{background:#fde8e8;color:#d44;border-color:#f0c0c0}
 .mf-srow{display:flex;align-items:center;gap:6px;}
 .ml-right{width:220px;flex-shrink:0;background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:12px;position:sticky;top:10px;min-height:calc(70vh - 120px);max-height:calc(100vh - 120px);overflow-y:auto;}
 .msel-hd{margin-bottom:10px;}
-.msel-title{font-size:13px;font-weight:bold;color:#2c3e50;text-align:center;}
+.msel-title{font-size:13px;font-weight:bold;color:#2c3e50;}
 .msel-list{display:flex;flex-direction:column;gap:5px;}
 .msel-chip{display:flex;align-items:center;gap:7px;background:#f0fff4;border:1.5px solid #81c784;border-radius:9px;padding:5px 8px;cursor:pointer;transition:background .15s;}
 .msel-chip:hover{background:#e0f7ea;}
@@ -221,14 +210,11 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   .ml-right{max-width:100%;padding:0;margin-top:8px}
   /* 보드 탭 */
   .layout{grid-template-columns:1fr!important;width:100%!important}
-  .layout3{grid-template-columns:1fr!important;gap:12px;width:100%!important;max-width:100%!important}
-  .board-panel{width:100%;min-width:0;overflow:hidden}
-  .sidebar{grid-row:auto;grid-column:auto;width:100%!important;position:sticky;top:8px;z-index:20;max-height:calc(100vh - 16px)}
-  .pscroll{min-height:220px;max-height:45vh}
-  .pgrid{grid-column:auto!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%}
-  .ptc{min-width:0;width:100%}
-  .bsw{overflow-x:hidden;width:100%}
-  #v-board .bsw{overflow:visible!important}
+  .layout3{grid-template-columns:1fr!important}
+  .sidebar{grid-row:auto;grid-column:auto;width:100%!important}
+  .pgrid{grid-column:auto!important;grid-template-columns:repeat(2,1fr)!important}
+  .ptc{min-width:0}
+  .bsw{overflow-x:visible}
   .scr-hint{display:none!important}
   /* 테이블 탭 */
   .tw{max-width:100%}
@@ -309,7 +295,6 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
     <button class="btn" id="sortBtn" onclick="toggleSort()">&#8597; 정렬</button>
     <button class="btn" onclick="openM('mAdd')">+ 추가</button>
     <button class="btn" onclick="openM('mPaste')">&#128203; 일괄추가</button>
-    <button class="btn job-change" onclick="openM('mJobBulk')">직업 변경</button>
     <button class="btn danger" onclick="delAll()">&#128465; 전체삭제</button>
   </div>
   <!-- 필터창: 버튼과 동일 중앙 정렬 -->
@@ -331,26 +316,16 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
     <!-- 오른쪽: 선택된 멤버 패널 -->
     <div class="ml-right" id="mselPanel">
       <div class="msel-hd">
-        <div class="box-head">&#9876;&#65039; 참여 인원 <span id="mselcnt"></span></div>
-        <div class="unified-search">
-          <span style="font-size:12px;color:#aac">&#128269;</span>
-          <input class="psearch" id="mselQ" placeholder="닉네임 검색..." oninput="mselq()">
-          <button id="mselJfBtn" class="filter-toggle" onclick="toggleMselJf()" title="직업 필터">&#9660;</button>
+        <div class="msel-title">&#9876;&#65039; 참여 인원 <span id="mselcnt" style="font-size:11px;font-weight:normal;color:#7a9ab8"></span></div>
+        <div class="mf-srow" style="margin-top:6px">
+          <button id="mselJfBtn" onclick="toggleMselJf()" style="background:none;border:1.5px solid #bbd0ee;border-radius:8px;padding:2px 9px;cursor:pointer;font-size:12px;color:#7a9ab8;flex-shrink:0;width:100%">&#9660; 직업 필터</button>
         </div>
         <div id="mseljfpop" style="display:none;background:#f8faff;border-radius:8px;padding:6px 4px;margin-top:4px">
           <div class="jf-chips" id="mseljfchips"></div>
         </div>
-        <div class="submark-actions allselect-actions">
-          <button class="btn all-on" onclick="selectAll()">전체 선택</button>
-          <button class="btn all-off" onclick="deselectAll()">전체 해제</button>
-        </div>
-        <div class="submark-actions mainselect-actions">
-          <button class="btn main-on" onclick="openMainSelectModal()">메인 선택</button>
-          <button class="btn main-off" onclick="clearMainSelect()">메인 해제</button>
-        </div>
-        <div class="submark-actions">
-          <button class="btn sub-on" onclick="openSubMarkModal()">서브 선택</button>
-          <button class="btn sub-off" onclick="clearSubMarks()">서브 해제</button>
+        <div style="display:flex;gap:5px;margin-top:6px;flex-wrap:wrap">
+          <button onclick="selectAll()" style="flex:1;font-size:11px;background:#e8f4fd;border:1px solid #bbd0ee;border-radius:7px;padding:3px 0;cursor:pointer;color:#5b8fd4">전체선택</button>
+          <button onclick="deselectAll()" style="flex:1;font-size:11px;background:#fde8e8;border:1px solid #f0c0c0;border-radius:7px;padding:3px 0;cursor:pointer;color:#d44">전체해제</button>
         </div>
       </div>
       <div class="msel-list" id="msellist"></div>
@@ -367,10 +342,10 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   <div class="bsw"><div class="layout3">
     <div class="sidebar">
       <div class="slbl">&#128101; 배치 대기자<span id="pcnt"></span></div>
-      <div class="unified-search">
+      <div class="srow">
         <span style="font-size:12px;color:#aac">&#128269;</span>
         <input class="psearch" id="psearch" placeholder="닉네임 검색..." oninput="renderBoard()">
-        <button id="jfToggle" class="filter-toggle" onclick="toggleJf()" title="직업 필터">&#9660;</button>
+        <button id="jfToggle" onclick="toggleJf()" style="background:none;border:1.5px solid #bbd0ee;border-radius:8px;padding:2px 8px;cursor:pointer;font-size:12px;color:#7a9ab8;flex-shrink:0" title="직업 필터">&#9660;</button>
       </div>
       <div id="jfpop" style="display:none;background:white;border:1.5px solid #dde8f4;border-radius:10px;padding:6px;margin-top:4px;box-shadow:0 4px 12px rgba(0,0,0,.1)">
         <div class="jf-chips" id="jfchips"></div>
@@ -437,33 +412,6 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
   <div class="mbtns"><button class="btn cancel" onclick="closeM('mPaste')">취소</button><button class="btn confirm" onclick="doPaste()">추가</button></div>
 </div></div>
 
-<div class="mbg" id="mJobBulk"><div class="modal">
-  <h2>직업 변경</h2>
-  <p style="font-size:12px;color:#7a8a9a;margin-bottom:8px;line-height:1.6">닉네임과 변경할 직업을 한 줄에 하나씩 입력하세요.<br>예시: <b>닉네임	직업</b> 또는 <b>닉네임,직업</b><br>입력한 직업은 등록된 직업명/키워드와 매칭되면 자동으로 정식 직업명으로 바뀝니다.</p>
-  <textarea class="fta" id="jobBulkPaste" placeholder="닉네임	변경할 직업
-닉네임,변경할 직업
-닉네임 변경할직업"></textarea>
-  <div class="mbtns"><button class="btn cancel" onclick="closeM('mJobBulk')">취소</button><button class="btn confirm" onclick="doJobBulk()">변경</button></div>
-</div></div>
-
-<div class="mbg" id="mMainSelect"><div class="modal">
-  <h2>✅ 메인 입력</h2>
-  <p style="font-size:12px;color:#7a8a9a;margin-bottom:8px;line-height:1.5">참여 인원에 넣을 닉네임을 한 줄에 하나씩 입력하세요.<br>멤버 일괄 추가처럼 탭/쉼표가 있어도 첫 칸의 닉네임으로 인식해요.</p>
-  <textarea id="mainSelectPaste" style="width:100%;height:170px;border:1.5px solid #dde8f4;border-radius:10px;padding:10px;font-family:monospace;font-size:12px;resize:vertical" placeholder="닉네임
-닉네임
-닉네임"></textarea>
-  <div class="mbtns"><button class="btn cancel" onclick="closeM('mMainSelect')">취소</button><button class="btn confirm" onclick="applyMainSelect()">입력</button></div>
-</div></div>
-
-<div class="mbg" id="mSubMark"><div class="modal">
-  <h2>🔵 서브 입력</h2>
-  <p style="font-size:12px;color:#7a8a9a;margin-bottom:8px;line-height:1.5">서브 마크를 표시할 닉네임을 한 줄에 하나씩 입력하세요.<br>멤버 일괄 추가처�� 탭/쉼표가 있어도 첫 칸의 닉네임으로 인식해요.</p>
-  <textarea id="subMarkPaste" style="width:100%;height:170px;border:1.5px solid #dde8f4;border-radius:10px;padding:10px;font-family:monospace;font-size:12px;resize:vertical" placeholder="닉네임
-닉네임
-닉네임"></textarea>
-  <div class="mbtns"><button class="btn cancel" onclick="closeM('mSubMark')">취소</button><button class="btn confirm" onclick="applySubMarks()">입력</button></div>
-</div></div>
-
 <div class="mbg" id="mEdit"><div class="modal">
   <h2>멤버 수정</h2>
   <div class="fl">닉네임</div>
@@ -502,7 +450,7 @@ table.pt tr.ex td{color:#9ab0c8;background:#f5f8fc}
 <input type="file" id="filein" accept="image/*" style="display:none">
 <script>
 var SK='gm11',MPC=8,SPC=8,PPL=5;
-var members=[],parties=[],selectedSet={},mfActiveJobs=[],mseljActiveJobs=[],mfQ='',mselQ='',curTab='board';
+var members=[],parties=[],selectedSet={},mfActiveJobs=[],mseljActiveJobs=[],mfQ='',curTab='board';
 var upId=null,edId=null,pkPid=null,pkSi=null,pkPool=[],activeJobs=[],dragSrc=null;
 
 var SORT_LABELS=['정렬'];
@@ -534,30 +482,19 @@ function initFbSync(){
   });
 }
 
-function displayPartyName(p){
-  var n=String((p&&p.name)||'').trim();
-  n=n.replace(/^M\s*/i,'').replace(/^S\s*/i,'').replace(/파티$/,'').trim();
-  if(!n){
-    var arr=parties.filter(function(x){return x.type===(p&&p.type);});
-    var idx=arr.indexOf(p);
-    n=String(idx+1);
-  }
-  return n;
-}
 function initParties(){
   if(!Array.isArray(parties))parties=[];
   // 기존 파티에 type 직접 지정 (ID 보존)
   parties.forEach(function(p,i){
     if(!p.type)p.type=(i<MPC)?'main':'sub';
     // 9파티→S1파티, 10파티→S2파티 이름 통일
-    if(p.name==='9파티')p.name='1';
-    if(p.name==='10파티')p.name='2';
-    p.name=displayPartyName(p);
+    if(p.name==='9파티')p.name='S1파티';
+    if(p.name==='10파티')p.name='S2파티';
   });
   var mainP=parties.filter(function(p){return p.type==='main';}).slice(0,MPC);
   var subP=parties.filter(function(p){return p.type==='sub';}).slice(0,SPC);
-  while(mainP.length<MPC){mainP.push({id:uid(),name:String(mainP.length+1),type:'main'});}
-  while(subP.length<SPC){subP.push({id:uid(),name:String(subP.length+1),type:'sub'});}
+  while(mainP.length<MPC){mainP.push({id:uid(),name:'M'+(mainP.length+1)+'파티',type:'main'});}
+  while(subP.length<SPC){subP.push({id:uid(),name:'S'+(subP.length+1)+'파티',type:'sub'});}
   parties=mainP.concat(subP);
 }
 function getSorted(arr){
@@ -575,7 +512,7 @@ function getSorted(arr){
   }
   return a;
 }
-var dragMid=null,dragSrc=null,_poolDropReady=false;
+var dragMid=null,dragSrc=null;
 
 // 파스텔톤
 var JM=[
@@ -644,7 +581,6 @@ function loadD(){
 }
 function saveD(){
   if(window._readOnly){console.log("[readonly] 저장 차단");return;}
-  syncSubMarkedSelection();
   var data={members:members,parties:parties,selectedSet:selectedSet};
   localStorage.setItem(SK,JSON.stringify(data));
   if(window._fbDb&&window._fbRef&&window._fbSet){
@@ -668,25 +604,13 @@ function goTab(t){
 }
 function render(){
   try{
-    syncSubMarkedSelection();
     var sub=members.filter(function(m){return !m.partyId&&selectedSet[m.id]!==false;});
-    var mainCnt=members.filter(function(m){return selectedSet[m.id]!==false&&!m.isSub;}).length;
-    var subCnt=members.filter(function(m){return selectedSet[m.id]!==false&&m.isSub;}).length;
-    var outCnt=members.filter(function(m){return selectedSet[m.id]===false;}).length;
-    el('info').textContent='전체 '+members.length+'명 · 메인 '+mainCnt+'명 · 서브 '+subCnt+'명 · 미참여 '+outCnt+'명';
-    // 데이터 변경 시 현재 탭만 다시 그리면 숨겨진 탭의 화면이 이전 상태로 남아
-    // 탭 이동/새로고침 전까지 변경사항이 안 보일 수 있어, 모든 탭을 즉시 동기 렌더링합니다.
-    rMembers();
-    renderBoard();
-    rTable();
+    el('info').textContent='전체 '+members.length+'명 · 배정됨 '+members.filter(function(m){return m.partyId;}).length+'명 · 대기 '+members.filter(function(m){return !m.partyId;}).length+'명';
+    if(curTab==='member')rMembers();
+    else if(curTab==='board')renderBoard();
+    else rTable();
   }catch(e){console.error('[render 오류]',e.message,e);return;}
   void document.body.offsetHeight;
-}
-
-function refreshNow(){
-  render();
-  if(window.requestAnimationFrame){requestAnimationFrame(function(){render();});}
-  setTimeout(function(){render();},0);
 }
 
 function buildMfFilter(){
@@ -723,12 +647,11 @@ function toggleMfJf(){
 function toggleMselJf(){
   var p=el('mseljfpop');if(!p)return;
   var open=p.style.display!=='none';p.style.display=open?'none':'block';
-  var b=el('mselJfBtn');if(b)b.textContent=open?'▼':'▲';
+  var b=el('mselJfBtn');if(b)b.textContent=(open?'▼':'▲')+' 직업 필터';
 }
 function mfq(){mfQ=(el('mfQ')||{value:''}).value.trim().toLowerCase();rMembers();}
-function mselq(){mselQ=(el('mselQ')||{value:''}).value.trim().toLowerCase();rMselPanel();}
 function selectAll(){members.forEach(function(m){selectedSet[m.id]=true;});saveD();rMembers();}
-function deselectAll(){members.forEach(function(m){if(m.pinned){selectedSet[m.id]=true;return;}selectedSet[m.id]=false;m.partyId=null;m.slotIndex=null;});saveD();refreshNow();}
+function deselectAll(){members.forEach(function(m){if(m.pinned){selectedSet[m.id]=true;return;}selectedSet[m.id]=false;m.partyId=null;m.slotIndex=null;});saveD();render();}
 function rMembers(){
   buildMfFilter();
   var q=mfQ;
@@ -738,7 +661,7 @@ function rMembers(){
   if(q)shown=shown.filter(function(m){return m.name.toLowerCase().indexOf(q)>=0||(m.job&&m.job.toLowerCase().indexOf(q)>=0);});
   var sel=all.filter(function(m){return selectedSet[m.id]!==false;});
   var cntEl=el('mfcnt');if(cntEl)cntEl.textContent=shown.length+'명 표시 / 전체 '+all.length+'명';
-  var selCnt=el('mselcnt');if(selCnt)selCnt.textContent='';
+  var selCnt=el('mselcnt');if(selCnt)selCnt.textContent='('+(mseljActiveJobs.length?sel.filter(function(m){return mseljActiveJobs.indexOf(m.job)>=0;}).length:sel.length)+'명)';
   var g=el('mgrid');g.innerHTML='';
   if(!members.length){var d=mk('div');d.style.cssText='grid-column:1/-1;text-align:center;color:#bbb;padding:30px';d.textContent='멤버가 없어요.';g.appendChild(d);}
   else{
@@ -778,8 +701,7 @@ function rMselPanel(){
   var all=getSorted(members.slice());
   var sel=all.filter(function(m){return selectedSet[m.id]!==false;});
   if(mseljActiveJobs.length)sel=sel.filter(function(m){return mseljActiveJobs.indexOf(m.job)>=0;});
-  if(mselQ)sel=sel.filter(function(m){return (m.name&&m.name.toLowerCase().indexOf(mselQ)>=0)||(m.job&&m.job.toLowerCase().indexOf(mselQ)>=0);});
-  var selCnt=el('mselcnt');if(selCnt)selCnt.textContent='';
+  var selCnt=el('mselcnt');if(selCnt)selCnt.textContent='('+all.filter(function(m){return selectedSet[m.id]!==false;}).length+'명)';
   var sl=el('msellist');if(!sl)return;sl.innerHTML='';
   if(!sel.length){
     var e=mk('div','msel-empty');e.textContent=mseljActiveJobs.length?'필터 결과 없음':'선택된 멤버가 없어요. (카드를 클릭하세요)';sl.appendChild(e);return;
@@ -796,8 +718,8 @@ function rMselPanel(){
     var xb=mk('button','');xb.textContent='✕';xb.style.cssText='background:none;border:none;color:#ccc;cursor:pointer;font-size:11px;padding:0 2px;flex-shrink:0';
     xb.title='선택 해제';
     (function(mid,chip2){
-      xb.onclick=function(e){e.stopPropagation();if(window._readOnly)return;selectedSet[mid]=false;var mm=getMem(mid);if(mm){mm.partyId=null;mm.slotIndex=null;}chip2.remove();saveD();refreshNow();};
-      chip.onclick=function(){if(window._readOnly)return;selectedSet[mid]=false;var mm=getMem(mid);if(mm){mm.partyId=null;mm.slotIndex=null;}chip2.remove();saveD();refreshNow();};
+      xb.onclick=function(e){e.stopPropagation();if(window._readOnly)return;selectedSet[mid]=false;var mm=getMem(mid);if(mm){mm.partyId=null;mm.slotIndex=null;}chip2.remove();saveD();render();};
+      chip.onclick=function(){if(window._readOnly)return;selectedSet[mid]=false;var mm=getMem(mid);if(mm){mm.partyId=null;mm.slotIndex=null;}chip2.remove();saveD();render();};
     })(m.id,chip);
     chip.appendChild(port);chip.appendChild(info);chip.appendChild(xb);
     sl.appendChild(chip);
@@ -954,12 +876,12 @@ function _renderPartyCard(p, isEx, targetGrid) {
               var dPid = dg.partyId, dSi = dg.slotIndex;
               dg.partyId = m2.partyId; dg.slotIndex = m2.slotIndex;
               m2.partyId = dPid; m2.slotIndex = dSi;
-              saveD(); refreshNow();
+              saveD(); render();
             } else if (dragSrc === 'sub') {
               var dg2 = getMem(dragMid); if (!dg2 || dg2.partyId) return;
               dg2.partyId = m2.partyId; dg2.slotIndex = m2.slotIndex;
               m2.partyId = null; m2.slotIndex = null;
-              saveD(); refreshNow();
+              saveD(); render();
             }
           });
         })(mem, s);
@@ -971,7 +893,7 @@ function _renderPartyCard(p, isEx, targetGrid) {
         var sjob = mk('div', 'sjob', mem.job || ''); sjob.style.color = ji.col; sinfo.appendChild(sjob);
         sinfo.appendChild(mk('div', 'srole', gr(mem.job)));
         var dl = mk('button', 'sdel', '✕');
-        (function(mx) { dl.onclick = function(e) { e.stopPropagation(); mx.partyId = null; mx.slotIndex = null; saveD(); refreshNow(); }; })(mem);
+        (function(mx) { dl.onclick = function(e) { e.stopPropagation(); mx.partyId = null; mx.slotIndex = null; saveD(); render(); }; })(mem);
         s.appendChild(mk('div', 'snf', String(si + 1))); var pinBtn=mk('button','spin'+(mem.pinned?' on':''),mem.pinned?'📌':'📍'); pinBtn.title=mem.pinned?'고정 해제':'파티 고정'; (function(mx){pinBtn.onclick=function(e){e.stopPropagation();togglePin(mx.id);};})(mem); s.appendChild(pinBtn); s.appendChild(sport); s.appendChild(sinfo); s.appendChild(dl);
       } else {
         s.className = 'slot empty';
@@ -987,7 +909,7 @@ function _renderPartyCard(p, isEx, targetGrid) {
             var memD = getMem(dragMid); if (!memD) return;
             if (dragSrc === 'sub') { if (memD.partyId) return; memD.partyId = pid; memD.slotIndex = idx; }
             else if (dragSrc === 'slot') { memD.partyId = pid; memD.slotIndex = idx; }
-            saveD(); refreshNow();
+            saveD(); render();
           });
         })(p.id, si, s);
       }
@@ -1008,7 +930,7 @@ function renderBoard() {
   var _poolRaw=members.filter(function(m){return !m.partyId&&selectedSet[m.id]!==false;});var _ri=function(j){for(var _i=0;_i<JM.length;_i++)for(var _k=0;_k<JM[_i].keys.length;_k++)if(j&&j.indexOf(JM[_i].keys[_k])>=0)return _i;return JM.length;};var pool=_poolRaw.slice().sort(function(a,b){var d=_ri(a.job)-_ri(b.job);return d!==0?d:(a.name<b.name?-1:a.name>b.name?1:0);});var filt=pool;
   if (activeJobs.length) filt = filt.filter(function(m) { return activeJobs.indexOf(m.job) >= 0; });
   if (q) filt = filt.filter(function(m) { return m.name.toLowerCase().indexOf(q) >= 0 || (m.job && m.job.toLowerCase().indexOf(q) >= 0); });
-  el('pcnt').textContent = '';
+  el('pcnt').textContent = pool.length + '명';
   buildJobFilter();
   var pl = el('plist'); pl.innerHTML = '';
   if (!filt.length) {
@@ -1080,7 +1002,7 @@ function rTable(){
   parties.forEach(function(p,idx){
     var isSub=(p.type==='sub'),tr=mk('tr');if(isSub)tr.className='ex';var ex=isSub;
     var sl=getSlots(p.id);
-    var td0=mk('td');td0.innerHTML='<b style="color:'+(ex?'#9ab0c8':'inherit')+'">'+displayPartyName(p)+' </b>';tr.appendChild(td0);
+    var td0=mk('td');td0.innerHTML='<b style="color:'+(ex?'#9ab0c8':'inherit')+'">'+p.name+' </b>';tr.appendChild(td0);
     for(var si=0;si<PPL;si++){
       var m=sl[si],td=mk('td');
       if(m){var ji=gji(m.job),role=gr(m.job),cc=mk('div','tc'),port=mk('div','tcp');port.style.background=ji.bg;
@@ -1091,7 +1013,7 @@ function rTable(){
     }
     tb.appendChild(tr);
   });
-  var sub=members.filter(function(m){return !m.partyId;});
+  var sub=members.filter(function(m){return !m.partyId&&selectedSet[m.id]!==false;});
   if(sub.length){var srows=Math.ceil(sub.length/PPL);for(var ri2=0;ri2<srows;ri2++){var tr2=mk('tr');tr2.style.background='#f4f0fc';var td01=mk('td');td01.style.whiteSpace='nowrap';if(ri2===0)td01.innerHTML='<b style="color:#7a6ab0">대기중</b>';tr2.appendChild(td01);for(var ci2=0;ci2<PPL;ci2++){var sm=getSorted(sub)[ri2*PPL+ci2],td=mk('td');if(sm){var ji2=gji(sm.job),cc2=mk('div','tc'),pt2=mk('div','tcp');pt2.style.background=ji2.bg;if(sm.portrait){var im4=mk('img');im4.src=sm.portrait;pt2.appendChild(im4);}else{setJic(pt2,ji2,22);}var a12=mk('div');a12.style.cssText='font-size:11px;font-weight:bold';a12.textContent=sm.name;cc2.appendChild(pt2);cc2.appendChild(a12);td.appendChild(cc2);}else{td.innerHTML='<span style="color:#eee">-</span>';}tr2.appendChild(td);}tb.appendChild(tr2);}}
   var se=el('tstats');se.innerHTML='';
   var map=calcStats(),ks=sortKeys(Object.keys(map));if(!ks.length)return;
@@ -1099,7 +1021,7 @@ function rTable(){
   ks.forEach(function(k){var s=map[k],pct=s.tot>0?Math.round(s.asgn/s.tot*100):0,ch=mk('div','tblch');ch.style.background=s.ji.bg;ch.style.color=s.ji.col;ch.innerHTML=jicHTML(s.ji)+' '+k+' <b>'+s.asgn+'/'+s.tot+'명</b> <span style="font-size:9px;opacity:.75">('+pct+'%)</span>';chs.appendChild(ch);});
   se.appendChild(h3);se.appendChild(chs);
 }
-function renPty(pid){var p=null;for(var i=0;i<parties.length;i++)if(parties[i].id===pid){p=parties[i];break;}if(!p)return;var n=prompt('파티 번호:',displayPartyName(p));if(!n||!n.trim())return;p.name=n.trim().replace(/^M\s*/i,'').replace(/^S\s*/i,'').replace(/파티$/,'').trim();saveD();refreshNow();}
+function renPty(pid){var p=null;for(var i=0;i<parties.length;i++)if(parties[i].id===pid){p=parties[i];break;}if(!p)return;var n=prompt('파티 이름:',p.name);if(!n||!n.trim())return;p.name=n.trim();saveD();render();}
 
 function autoAssign(){
   if(!confirm('미배정 인원을 랜덤 배정할까요?\n\n⭐ 별표 멤버 → 메인파티 우선\n메인이 가득 차면 남은 인원 → 서브파티 순서대로\n\n1순위. 하이프리스트, 집시/클로운 1명씩\n2순위. 소환사/크리에이터 1명\n3순위. 물리딜러, 마법딜러 1명씩\n4순위. 나머지 빈 자리\n\n[서브] 파티당 힐러 1명 우선, 이후 중복 직업 가능'))return;
@@ -1227,75 +1149,13 @@ function autoAssign(){
   assignSub(subP);
   saveD();render();
 }
-function _parseNameLines(text){
-  return text.split('\n').map(function(line){
-    line=line.trim();if(!line)return '';
-    var parts=line.split(/\t|,/);
-    return (parts[0]||'').trim();
-  }).filter(function(x){return !!x;});
-}
-
-function syncSubMarkedSelection(){
-  members.forEach(function(m){
-    if(m.isSub){selectedSet[m.id]=true;}
-  });
-}
-function openMainSelectModal(){
-  if(window._readOnly)return;
-  var names=members.filter(function(m){return selectedSet[m.id]!==false;}).map(function(m){return m.name;}).join('\n');
-  el('mainSelectPaste').value=names;
-  openM('mMainSelect');
-}
-function applyMainSelect(){
-  if(window._readOnly)return;
-  var names=_parseNameLines(el('mainSelectPaste').value);
-  var set={};names.forEach(function(n){set[n.toLowerCase()]=true;});
-  var hit=0;
-  members.forEach(function(m){
-    if(set[(m.name||'').trim().toLowerCase()]){selectedSet[m.id]=true;hit++;}
-  });
-  closeM('mMainSelect');el('mainSelectPaste').value='';saveD();refreshNow();
-  setTimeout(function(){alert(hit+'명을 참여 인원에 넣었어요.');},50);
-}
-function clearMainSelect(){
-  if(window._readOnly)return;
-  var cnt=members.filter(function(m){return selectedSet[m.id]!==false;}).length;
-  if(!cnt){alert('해제할 참여 인원이 없어요.');return;}
-  if(!confirm('참여 인원 '+cnt+'명을 모두 해제할까요?\n\n파티 배정도 함께 해제됩니다.'))return;
-  members.forEach(function(m){if(m.pinned){selectedSet[m.id]=true;return;}selectedSet[m.id]=false;m.partyId=null;m.slotIndex=null;});
-  saveD();refreshNow();
-}
-
-function openSubMarkModal(){
-  if(window._readOnly)return;
-  var names=members.filter(function(m){return m.isSub;}).map(function(m){return m.name;}).join('\n');
-  el('subMarkPaste').value=names;
-  openM('mSubMark');
-}
-function applySubMarks(){
-  if(window._readOnly)return;
-  var names=_parseNameLines(el('subMarkPaste').value);
-  var set={};names.forEach(function(n){set[n.toLowerCase()]=true;});
-  var hit=0;
-  members.forEach(function(m){if(set[(m.name||'').trim().toLowerCase()]){m.isSub=true;selectedSet[m.id]=true;hit++;}});
-  syncSubMarkedSelection();closeM('mSubMark');el('subMarkPaste').value='';saveD();refreshNow();
-  setTimeout(function(){alert(hit+'명에 서브 마크를 입력했어요.');},50);
-}
-function clearSubMarks(){
-  if(window._readOnly)return;
-  var cnt=members.filter(function(m){return m.isSub;}).length;
-  if(!cnt){alert('해제할 서브 마크가 없어요.');return;}
-  if(!confirm('서브 마크 '+cnt+'개를 모두 해제할까요?'))return;
-  members.forEach(function(m){m.isSub=false;});
-  saveD();refreshNow();
-}
-function togglePin(id){var m=getMem(id);if(!m)return;m.pinned=!m.pinned;saveD();refreshNow();}
-function resetAll(){if(!confirm('모든 파티 배정을 초기화할까요?\n\n📌 핀 멤버는 고정 유지됩니다.'))return;members.forEach(function(m){if(!m.pinned){m.partyId=null;m.slotIndex=null;}});saveD();refreshNow();}
+function togglePin(id){var m=getMem(id);if(!m)return;m.pinned=!m.pinned;saveD();render();}
+function resetAll(){if(!confirm('모든 파티 배정을 초기화할까요?\n\n📌 핀 멤버는 고정 유지됩니다.'))return;members.forEach(function(m){if(!m.pinned){m.partyId=null;m.slotIndex=null;}});saveD();render();}
 function doAdd(){
   var n=el('aN').value.trim();if(!n)return;
   var j=el('aJ').value||'',s=el('aStar').checked,sub=el('aSub').checked;
   var nm={id:uid(),name:n,job:j,portrait:null,partyId:null,slotIndex:null,star:s,isSub:sub};members.push(nm);selectedSet[nm.id]=true;
-  closeM('mAdd');el('aN').value='';el('aStar').checked=false;el('aSub').checked=false;fillJobSelect('aJ','');saveD();refreshNow();
+  closeM('mAdd');el('aN').value='';el('aStar').checked=false;el('aSub').checked=false;fillJobSelect('aJ','');saveD();render();
 }
 function loadCsv(input){
   var file=input.files[0];if(!file)return;
@@ -1319,56 +1179,18 @@ function loadCsv(input){
     reader.readAsArrayBuffer(file);
   }
 }
-function normalizeJobName(jobRaw){
-  var job=(jobRaw||'').trim();
-  if(!job)return '';
-  for(var i=0;i<JM.length;i++){
-    if(job===JM[i].label)return JM[i].label;
-    for(var k=0;k<JM[i].keys.length;k++){
-      if(job.indexOf(JM[i].keys[k])>=0||JM[i].label.indexOf(job)>=0)return JM[i].label;
-    }
-  }
-  return job;
-}
-function parseNameJobLine(line){
-  line=(line||'').trim();if(!line)return null;
-  var parts=line.split(/	|,/);
-  if(parts.length<2){
-    parts=line.split(/\s+/);
-    if(parts.length<2)return null;
-    return {name:parts[0].trim(),job:parts.slice(1).join(' ').trim()};
-  }
-  return {name:(parts[0]||'').trim(),job:(parts[1]||'').trim()};
-}
-function doJobBulk(){
-  if(window._readOnly)return;
-  var lines=el('jobBulkPaste').value.split('\n'),changed=0,missing=[],invalid=[];
-  lines.forEach(function(line){
-    var row=parseNameJobLine(line);if(!row||!row.name)return;
-    if(!row.job){invalid.push(row.name);return;}
-    var m=members.find(function(x){return (x.name||'').trim().toLowerCase()===row.name.toLowerCase();});
-    if(!m){missing.push(row.name);return;}
-    var newJob=normalizeJobName(row.job);
-    if(m.job!==newJob){m.job=newJob;changed++;}
-  });
-  closeM('mJobBulk');el('jobBulkPaste').value='';saveD();refreshNow();
-  var msg=changed+'명의 직업을 변경했어요.';
-  if(missing.length)msg+='\n\n찾지 못한 닉네임: '+missing.slice(0,20).join(', ')+(missing.length>20?' 외 '+(missing.length-20)+'명':'');
-  if(invalid.length)msg+='\n\n직업이 비어있는 줄: '+invalid.slice(0,20).join(', ')+(invalid.length>20?' 외 '+(invalid.length-20)+'명':'');
-  setTimeout(function(){alert(msg);},50);
-}
-
 function doPaste(){
   el('aPaste').value.split('\n').forEach(function(line){
     line=line.trim();if(!line)return;
     var parts=line.split('\t'),name=parts[0].trim(),jobRaw=(parts[1]||'').trim(),p2=(parts[2]||'').trim(),p3=(parts[3]||'').trim(),starFlag=p2.toLowerCase()==='star'||p2==='고투력',subFlag=p3.toLowerCase()==='sub'||p2.toLowerCase()==='sub';
-    var job=normalizeJobName(jobRaw);
+    var job=jobRaw;
+    if(jobRaw){for(var i=0;i<JM.length;i++){var found=false;for(var k=0;k<JM[i].keys.length;k++)if(jobRaw.indexOf(JM[i].keys[k])>=0){job=JM[i].label;found=true;break;}if(found)break;}}
     if(name){var nm2={id:uid(),name:name,job:job,portrait:null,partyId:null,slotIndex:null,star:starFlag,isSub:subFlag};members.push(nm2);selectedSet[nm2.id]=true;}
   });
-  closeM('mPaste');el('aPaste').value='';saveD();refreshNow();
+  closeM('mPaste');el('aPaste').value='';saveD();render();
 }
-function delMember(id){var m=getMem(id);if(!m||!confirm(m.name+' 삭제할까요?'))return;members=members.filter(function(x){return x.id!==id;});saveD();refreshNow();}
-function delAll(){if(!members.length){alert('멤버가 없어요!');return;}if(!confirm('⚠️ 전체 '+members.length+'명을 삭제할까요?\n\n이 작업은 되돌릴 수 없어요!'))return;if(!confirm('정말로 삭제하시겠어요?\n\n확인을 누르면 전체 멤버�� 삭제됩니다.'))return;members=[];saveD();refreshNow();}
+function delMember(id){var m=getMem(id);if(!m||!confirm(m.name+' 삭제할까요?'))return;members=members.filter(function(x){return x.id!==id;});saveD();render();}
+function delAll(){if(!members.length){alert('멤버가 없어요!');return;}if(!confirm('⚠️ 전체 '+members.length+'명을 삭제할까요?\n\n이 작업은 되돌릴 수 없어요!'))return;if(!confirm('정말로 삭제하시겠어요?\n\n확인을 누르면 전체 멤버�� 삭제됩니다.'))return;members=[];saveD();render();}
 function openEdit(id){
   edId=id;var m=getMem(id);if(!m)return;
   el('eN').value=m.name;fillJobSelect('eJ',m.job);el('eStar').checked=!!m.star;el('eSub').checked=!!m.isSub;openM('mEdit');
@@ -1376,12 +1198,12 @@ function openEdit(id){
 function doEdit(){
   var n=el('eN').value.trim();if(!n)return;
   var m=getMem(edId);if(!m)return;
-  m.name=n;m.job=el('eJ').value||'';m.star=el('eStar').checked;m.isSub=el('eSub').checked;closeM('mEdit');saveD();refreshNow();
+  m.name=n;m.job=el('eJ').value||'';m.star=el('eStar').checked;m.isSub=el('eSub').checked;saveD();render();closeM('mEdit');
 }
 function openPick(pid,si){
   var pool=members.filter(function(m){return !m.partyId;});if(!pool.length){alert('서브파티에 멤버가 없어요!');return;}
   pkPid=pid;pkSi=si;pkPool=pool;var p=null;for(var i=0;i<parties.length;i++)if(parties[i].id===pid){p=parties[i];break;}
-  el('pickTtl').textContent=(p?displayPartyName(p):'')+' · '+(si+1)+'번 자리';el('pickQ').value='';rPickList(pool);openM('mPick');
+  el('pickTtl').textContent=(p?p.name:'')+' · '+(si+1)+'번 자리';el('pickQ').value='';rPickList(pool);openM('mPick');
 }
 function filterPick(){var q=el('pickQ').value.trim().toLowerCase();rPickList(q?pkPool.filter(function(m){return m.name.toLowerCase().indexOf(q)>=0||m.job.toLowerCase().indexOf(q)>=0;}):pkPool);}
 function rPickList(list){
@@ -1428,7 +1250,7 @@ function doUpload(id){upId=id;el('filein').click();}
 el('filein').onchange=function(e){
   var f=e.target.files[0];if(!f)return;
   var reader=new FileReader();
-  reader.onload=function(ev){var m=getMem(upId);if(m){m.portrait=ev.target.result;saveD();refreshNow();}};
+  reader.onload=function(ev){var m=getMem(upId);if(m){m.portrait=ev.target.result;saveD();render();}};
   reader.readAsDataURL(f);e.target.value='';
 };
 document.querySelectorAll('.mbg').forEach(function(bg){bg.addEventListener('click',function(e){if(e.target===bg)bg.classList.remove('show');});});
@@ -1448,7 +1270,7 @@ function buildViewer(enc){
   L.push('*{box-sizing:border-box;margin:0;padding:0}body{font-family:sans-serif;background:#eef2f7;padding:16px}');
   L.push('h1{text-align:center;color:#5a7fa8;font-size:20px;margin-bottom:4px}.sub{text-align:center;color:#aac;font-size:11px;margin-bottom:10px}');
   L.push('.tabs{display:flex;justify-content:center;gap:8px;margin-bottom:12px}.tab{padding:7px 18px;border:2px solid #bbd0ee;border-radius:20px;background:#ddeaf8;color:#3a6ab0;font-size:12px;font-weight:bold;cursor:pointer}.tab.active{background:linear-gradient(135deg,#5b8fd4,#3a6ab0);color:white;border-color:#3a6ab0}');
-    L.push('.info{text-align:center;color:#999;font-size:12px;margin-bottom:10px}.bsw{width:100%;overflow-x:auto;overflow-y:visible}.layout{display:grid;grid-template-columns:240px repeat(4,240px);gap:10px;align-items:start;width:fit-content;margin:0 auto}.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-content:start}.sidebar{width:240px;display:flex;flex-direction:column;gap:6px;background:white;border-radius:14px;box-shadow:0 2px 12px rgba(91,143,212,.13);padding:10px;border:1.5px solid #dde8f4;grid-row:1/3;grid-column:1}');
+  L.push('.info{text-align:center;color:#999;font-size:12px;margin-bottom:10px}.bsw{width:100%;overflow-x:auto}.layout{display:grid;grid-template-columns:240px repeat(4,240px);gap:10px;align-items:start;width:fit-content;margin:0 auto}.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-content:start}.sidebar{width:240px;display:flex;flex-direction:column;gap:6px;background:white;border-radius:14px;box-shadow:0 2px 12px rgba(91,143,212,.13);padding:10px;border:1.5px solid #dde8f4;grid-row:1/3;grid-column:1}');
   L.push('.slbl{font-size:11px;font-weight:bold;color:#7a9ab8;background:white;border-radius:10px;padding:7px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:6px}.slbl span{font-size:10px;color:#aac;display:block;margin-top:2px}');
   L.push('.pscroll{overflow-y:auto;max-height:72vh}.plist{display:flex;flex-direction:column;gap:7px}.pc{background:white;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.08);overflow:hidden}');
   L.push('.pp{width:100%;height:90px;display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden}.pp img{width:100%;height:100%;object-fit:cover;display:block}.pi{padding:4px 7px 7px}');
